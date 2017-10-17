@@ -1,9 +1,9 @@
-package controllers;
+package fr.ulysse.controllers;
 
 import org.springframework.web.bind.annotation.*;
 
 /**
- * Created by ulysse on 16/10/2017.
+ * Created by ulysse on 17/10/2017.
  */
 @RestController
 @RequestMapping("/clients")
@@ -38,4 +38,5 @@ public class ClientController {
     public void detroy() {
 
     }
+
 }

@@ -1,18 +1,29 @@
-package models;
+package fr.ulysse.models;
 
 /**
- * Created by ulysse on 16/10/2017.
+ * Created by ulysse on 17/10/2017.
  */
 public class UserDto {
+
+    private Long id;
     private String nom;
     private String prenom;
 
     public UserDto() {
     }
 
-    public UserDto(String nom, String prenom) {
+    public UserDto(Long id, String nom, String prenom) {
+        this.id = id;
         this.nom = nom;
         this.prenom = prenom;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNom() {

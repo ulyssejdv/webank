@@ -3,6 +3,7 @@ package fr.ulysse.controllers;
 import fr.ulysse.models.UserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -39,7 +40,6 @@ public class ClientController {
      */
     @GetMapping
     public ArrayList<UserDto> list() {
-        logger.info("Hello");
         return this.database;
     }
 

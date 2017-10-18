@@ -59,12 +59,69 @@ paths:
         '200':
           description: Ok
   '/clients/{id}':
+    get:
+      tags:
+        - clients
+      summary: Get an existing Client
+      description: ''
+      operationId: retrieve
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          description: Client object that needs to be added to the store
+          required: true
+      responses:
+        '200':
+          description: Ok
     put:
       tags:
         - clients
       summary: Update an existing Client
       description: ''
       operationId: update
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          description: Client object that needs to be added to the store
+          required: true
+      responses:
+        '200':
+          description: Ok
+    patch:
+      tags:
+        - clients
+      summary: Partial update an existing Client
+      description: ''
+      operationId: partialUpdate
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          description: Client object that needs to be added to the store
+          required: true
+      responses:
+        '200':
+          description: Ok
+    delete:
+      tags:
+        - clients
+      summary: Delete an existing Client
+      description: ''
+      operationId: destroy
       consumes:
         - application/json
       produces:

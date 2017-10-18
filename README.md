@@ -20,3 +20,4 @@ Now you can access the API on port 8080 !
 [http://localhost:8080/clients/](http://localhost:8080/clients/)
 
 
+Read the API documentation by opening : `api-doc/index.html`

@@ -1,6 +1,8 @@
 package fr.ulysse.controllers;
 
 import fr.ulysse.models.UserDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -11,6 +13,8 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping("/clients")
 public class ClientController {
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private ArrayList<UserDto> database;
 
@@ -35,6 +39,7 @@ public class ClientController {
      */
     @GetMapping
     public ArrayList<UserDto> list() {
+        logger.info("Hello");
         return this.database;
     }
 

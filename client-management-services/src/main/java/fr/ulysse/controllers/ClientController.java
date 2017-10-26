@@ -1,12 +1,15 @@
 package fr.ulysse.controllers;
 
-import fr.ulysse.models.UserDto;
+import fr.ulysse.models.ClientDto;
+import fr.ulysse.models.ClientEntity;
+import fr.ulysse.repositories.ClientRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ulysse on 17/10/2017.
@@ -15,23 +18,16 @@ import java.util.ArrayList;
 @RequestMapping("/clients")
 public class ClientController {
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final ClientRepository clientRepository;
 
-    private ArrayList<UserDto> database;
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
      * This controller is here just for seed the fake users database
      */
-    public ClientController() {
-        // This is my fake user database
-        this.database = new ArrayList<UserDto>();
-        for (int i=0 ; i<10; i++) {
-            database.add(new UserDto(
-                    (long) i,
-                    "nom "+i,
-                    "prenom "+ i
-            ));
-        }
+    @Autowired
+    public ClientController(ClientRepository clientRepository) {
+        this.clientRepository = clientRepository;
     }
 
     /**
@@ -39,8 +35,8 @@ public class ClientController {
      * @return
      */
     @GetMapping
-    public ArrayList<UserDto> list() {
-        return this.database;
+    public List<ClientEntity> list() {
+        return this.clientRepository.findAll();
     }
 
     /**
@@ -49,14 +45,8 @@ public class ClientController {
      * @return
      */
     @GetMapping("/{id}")
-    public UserDto retrieve(@PathVariable Long id) {
-        UserDto userDto = null;
-        for (UserDto u: this.database) {
-            if (u.getId() == id) {
-                userDto = u;
-            }
-        }
-        return userDto;
+    public ClientEntity retrieve(@PathVariable Long id) {
+        return this.clientRepository.findOne(id);
     }
 
 
@@ -66,9 +56,8 @@ public class ClientController {
      * @return
      */
     @PostMapping
-    public UserDto create(@RequestBody UserDto input) {
-        this.database.add(input);
-        return input;
+    public ClientEntity create(@RequestBody ClientEntity input) {
+        return this.clientRepository.save(input);
     }
 
     /**
@@ -86,13 +75,7 @@ public class ClientController {
 
     @DeleteMapping("/{id}")
     public void detroy(@PathVariable Long id) {
-        UserDto userDto = null;
-        for (UserDto u: this.database) {
-            if (u.getId() == id) {
-                userDto = u;
-            }
-        }
-        database.remove(userDto);
+        this.clientRepository.delete(id);
     }
 
 }

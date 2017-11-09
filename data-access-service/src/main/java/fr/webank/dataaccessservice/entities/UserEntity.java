@@ -1,15 +1,15 @@
-package fr.ulysse.models;
+package fr.webank.dataaccessservice.entities;
 
 import lombok.Data;
 
 import javax.persistence.*;
 
 /**
- * Created by ulysse on 19/10/2017.
+ * Created by ulysse on 09/11/2017.
  */
 @Data
 @Entity(name = "users")
-public class ClientEntity {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

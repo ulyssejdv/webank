@@ -1,23 +1,11 @@
-# DM ONLINE BANKING
+# Backend Webank
 
-## Running the application
+Projet modulaire maven !
 
-Get the project :
+Certains des modules présent exposent des interfaces REST qui se lancent avec la commande suivante :
 
-`git clone https://github.com/ulyssejdv/dm-online-banking.git`
+`mvn spring-boot:run`
 
-Go in the project :
+D'autres modules sont des utilitaires pour porte des classes communes à différents modules
 
-`cd dm-online-banking/`
-
-Build and run the project :
-
-`mvn clean install && mvn spring-boot:run`
-
-
-Now you can access the API on port 8080 !
-
-[http://localhost:8080/clients/](http://localhost:8080/clients/)
-
-
-Read the API documentation by opening : `api-doc/index.html`
+### Si vous créez de nouveaux modules, il faut les ajouter dans le POM parent 

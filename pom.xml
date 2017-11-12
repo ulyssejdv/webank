@@ -36,6 +36,7 @@
     <modules>
         <module>data-access-service</module>
         <module>webank-models</module>
+        <module>webank-webapp</module>
     </modules>
 
     <dependencyManagement>

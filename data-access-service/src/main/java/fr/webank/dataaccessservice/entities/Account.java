@@ -32,13 +32,6 @@ public class Account {
 	private Date   creationDate;
 	private List<Balance> listBalance;
 
-    public Integer getIdAccount() {
-		return idAccount;
-	}
-
-	public void setIdAccount(Integer idAccount) {
-		this.idAccount = idAccount;
-	}
 
 	public String getType() {
 		return type;
@@ -76,9 +69,9 @@ public class Account {
     @SequenceGenerator(name = "account_id_seq", sequenceName = "account_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "account_id_seq")
     @Column(name = "id", unique = true, nullable = false)
-    public Integer getId() {return idAccount;}
+    public Integer getIdAccount() {return idAccount;}
 
-    public void setId(Integer idAccount) {
+    public void setIdAccount(Integer idAccount) {
         this.idAccount = idAccount;
     }
 

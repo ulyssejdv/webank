@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -20,7 +22,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Transaction {
 	
 	private Integer idTransaction;
-	private String transactionType;
+	private TransactionType transactionType;
+	private Account account;
 	private Integer transactionAmount;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date   transactionDate;
@@ -28,12 +31,13 @@ public class Transaction {
 	public Transaction() {
 	}
 
-	public Transaction(Integer idTransaction, String transactionType,Integer transactionAmount,Date transactionDate) {
+	public Transaction(Integer idTransaction, TransactionType transactionType,Integer transactionAmount,Date transactionDate, Account account) {
 
 		this.idTransaction		= idTransaction;
 		this.transactionType 	= transactionType;
 		this.transactionAmount	= transactionAmount;
 		this.transactionDate 	= transactionDate;
+		this.account = account;
 		}
 	
 	
@@ -46,14 +50,6 @@ public class Transaction {
 	}
 	public void setIdTransaction(Integer idTransaction) {
 		this.idTransaction = idTransaction;
-	}
-	
-	@Column(name = "transactionType", length = 50)
-	public String getTransactionType() {
-		return transactionType;
-	}
-	public void setTransactionType(String transactionType) {
-		this.transactionType = transactionType;
 	}
 	
 	@Column(name = "transactionAmount", length = 50)
@@ -73,5 +69,20 @@ public class Transaction {
 		this.transactionDate = transactionDate;
 	}
 	
+	@ManyToOne
+    @JoinColumn(name="idTransactionType", referencedColumnName = "id")
+    public TransactionType getTransactionType(){
+        return transactionType;
+    }
+    public void setTransactionType(TransactionType transactionType){
+        this.transactionType=transactionType;
+    }
+    
+    @ManyToOne
+    @JoinColumn(name="account_id", referencedColumnName = "id")
+    public Account getAccount() {return account;}
+    public void setAccount(Account account) {
+        this.account =account;
+    }
 
 }

@@ -5,3 +5,7 @@ INSERT INTO public.customers(id, address, birthday, email, firstname, lastname, 
 INSERT INTO public.account(id, account_number, creation_date, type, customer_id) VALUES (1, 123, '2014/05/12', 'courant', 1);
 --Data table balance
 INSERT INTO public.balance(id, balance, date, account_id) VALUES (1, 300, '2017/12/25', 1);
+--Data table transaction_type
+INSERT INTO public.transaction_type(id, transaction_type_name)VALUES (1, 'Débit');
+--Data table transactions
+INSERT INTO public.transactions(id, transaction_amount, transaction_date, account_id, id_transaction_type) VALUES (1, 500, '12/10/2017', 1, 1);

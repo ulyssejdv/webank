@@ -1,0 +1,11 @@
+# configuration application web avec Spring boot
+server:
+  port: 8080
+  contextPath: /pds
+
+#MVC
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/pages/
+      suffix: .jsp

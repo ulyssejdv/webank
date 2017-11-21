@@ -18,7 +18,7 @@ public class StockService {
         this.stockRepository = stockRepository;
     }
 
-    public List<UserDto> getAll() {
+    public List<UserDto> getAllStocks() {
         // TODO Get data from repository
         return null;
     }

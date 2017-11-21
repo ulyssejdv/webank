@@ -23,7 +23,7 @@ public class StockController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity <List<StockDto>> get() {
+    public ResponseEntity <List<StockDto>> getAllStocks() {
         // TODO
         return new ResponseEntity<>(new ArrayList<StockDto>(), HttpStatus.OK);
     }

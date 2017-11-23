@@ -1,20 +1,37 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: SarahAllouche
-  Date: 20/10/2017
-  Time: 12:15
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
-<html>
-<head>
-    <title>Exo2</title>
-</head>
-<body bgcolor="#fffacd">
-<h2>exxo2 : response status code</h2>
-<hr color="navyblue"/> ${customer.getLastName()}
-</body>
-</html>
+
+<%@include file="header.jsp" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>Affichage client</h1>
+            </div>
+      
+
+                <div class="jumbotron">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Nom</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                                <tr>
+                                    <td>${customer.getLastName()}</td>
+                                </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    </div>
+       
+    
+</div>
+
+
+<%@include file="footer.jsp"%>

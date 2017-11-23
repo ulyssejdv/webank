@@ -20,7 +20,7 @@ public class CustomerController {
 		  
 	        ModelAndView mav = new ModelAndView("response"); //param dans jsp qui est formation
 	        RestTemplate restTemplate = new RestTemplate();
-	        String url = "http://localhost:25000/data-access-service/customers/1";
+	        String url = "http://localhost:25000/data-access-service/customer/1";
 	        CustomerDto customerDto = restTemplate.getForObject(url, CustomerDto.class); 
 	        mav.addObject("customer", customerDto);
 	        

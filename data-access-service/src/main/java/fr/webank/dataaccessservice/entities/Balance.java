@@ -36,9 +36,6 @@ public class Balance {
     @Column(name = "last_date_balance", length = 13)
     private Date lastBalanceDate;
     
-    @ManyToOne
-    @JoinColumn(name="account_id", referencedColumnName = "id")
-    private Account account;
     
 
     

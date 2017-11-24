@@ -34,8 +34,9 @@ public class Account {
 	@Column(name = "date")
 	private Date   creationDate;
 	
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
-	private List<Balance> balance;
+	@ManyToOne
+	@JoinColumn(name="balance_id", referencedColumnName = "id")
+    private Balance balance;
 	
 
 }

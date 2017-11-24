@@ -20,6 +20,6 @@ public class AccountDto {
 	private String accountNumber;
 	private String type;
 	private Date creationDate;
-	private List<BalanceDto> balance;
+	private BalanceDto balance;
 	
 }

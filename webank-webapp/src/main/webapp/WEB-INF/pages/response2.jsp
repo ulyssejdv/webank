@@ -17,14 +17,18 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th>Type</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
                             <th>Numéro de compte</th>
+                            <th>Solde</th>
                         </tr>
                         </thead>
                         <tbody>
                                 <tr>
-                                    <td>${account.getType()}</td>
+                                	<td>${account.customer.getFirstname()}</td>
+                                	<td>${account.customer.getLastname()}</td>
                                     <td>${account.getAccountNumber()}</td>
+                                    <td>${account.balance.getBalance()}</td>
                                 </tr>
                         </tbody>
                     </table>

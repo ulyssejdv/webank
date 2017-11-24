@@ -16,5 +16,5 @@ public class BalanceDto {
 	private String idBalance;
 	private Integer balance;
 	private Date lastBalanceDate;
-	private AccountDto account;
+
 }

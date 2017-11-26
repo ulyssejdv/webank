@@ -3,15 +3,17 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 
-<%@include file="header.jsp" %>
+<%@include file="../header.jsp" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="page-header">
-                <h1>Affichage client</h1>
+                <h1>Simuler un mouvement</h1>
             </div>
-      
+            
+      <p>Vous êtes actuellement sur la page permettant de simuler un mouvement sur le compte du client ci-arpès 
+            pour cela cliquer sur le bouton ci-dessous.</p>
 
                 <div class="jumbotron">
                     <table class="table table-striped">
@@ -35,9 +37,22 @@
                 </div>
         </div>
     </div>
-       
+     <form:form method="post" modelAttribute="" action="" cssClass="form-horizontal">
+            <table class="table table-bordered">
+                <tr>
+                    <th style="text-align:center; vertical-align:middle;">
+
+                        <button type="submit" class="btn btn-primary">
+                            <h5 style="color:white;">
+                                <strong>Simuler mouvement</strong>
+                            </h5>
+                        </button>
+                    </th>
+                </tr>
+            </table>
+            </form:form>   
     
 </div>
 
 
-<%@include file="footer.jsp"%>
+<%@include file="../footer.jsp"%>

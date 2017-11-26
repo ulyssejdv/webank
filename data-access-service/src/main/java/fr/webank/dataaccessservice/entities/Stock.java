@@ -3,15 +3,17 @@ package fr.webank.dataaccessservice.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "stock", schema = "public")
-public class StockEntity {
+public class Stock {
 
     private String stockId;
     private String stockDescription;
 
+    @Id
     @Column(name = "stockid", length = 50)
     public String getStockId() { return stockId; }
 

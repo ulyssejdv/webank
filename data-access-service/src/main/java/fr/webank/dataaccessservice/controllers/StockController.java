@@ -26,11 +26,10 @@ public class StockController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity <List<StockDto>> getAllStocks() {
-        // TODO
-        return new ResponseEntity<>(new ArrayList<StockDto>(), HttpStatus.OK);
+        //
+        List<StockDto> listStock = stockService.getAllStocks();
+        return new ResponseEntity<>(listStock, HttpStatus.OK);
     }
-
-
 
     @RequestMapping(path = "/{stockId}", method = RequestMethod.GET)
     public ResponseEntity <List<StockPriceDto>> getStockPrice(@PathVariable String stockId) {

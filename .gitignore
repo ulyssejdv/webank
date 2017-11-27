@@ -48,3 +48,14 @@ target
 .classpath
 
 .project
+
+/webank-models/.settings/
+/webank-models/target/
+
+/data-access-service/.settings/
+/data-access-service/target/
+
+/webank-webapp/.settings/
+/webank-webapp/target/
+
+

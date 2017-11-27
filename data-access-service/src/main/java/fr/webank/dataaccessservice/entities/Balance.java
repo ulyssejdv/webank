@@ -15,63 +15,28 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
-@Entity
-@Table(name = "balance", schema = "public")
+@Data
+@Entity(name = "balance")
 public class Balance {
-
-    private Integer idBalance;
-    private Integer balance;
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date lastBalanceDate;
-    private Account account;
     
-    public Balance(){
-
-    }
-
-    public Balance (Integer    idBalance ,Integer   balance, Date lastBalanceDate, Account account){
-
-        this.idBalance = idBalance;
-        this.balance= balance;
-        this.lastBalanceDate = lastBalanceDate;
-        this.account =account;
-    }
-    
-
     @Id
-    @SequenceGenerator(name = "balance_id_seq", sequenceName = "balance_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "balance_id_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
-    public Integer getId() {return idBalance;}
-
-    public void setId(Integer idBalance) {
-        this.idBalance = idBalance;
-    }
-
-
+    private Long idBalance;
+    
     @Column(name = "balance")
-    public Integer getBalance() {return balance;}
-    public void setBalance(Integer balance) {
-        this.balance =balance;
-    }
-
+    private Integer balance;
+    
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
-    @Column(name = "date", length = 13)
-    public Date getlastBalanceDate() {
-        return lastBalanceDate;
-    }
+    @Column(name = "last_date_balance", length = 13)
+    private Date lastBalanceDate;
+    
+    
 
-    public void setlastBalanceDate(Date lastBalanceDate) {
-        this.lastBalanceDate = lastBalanceDate;
-    }
-
-    @ManyToOne
-    @JoinColumn(name="account_id", referencedColumnName = "id")
-    public Account getAccount() {return account;}
-    public void setAccount(Account account) {
-        this.account =account;
-    }
+    
 }

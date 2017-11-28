@@ -40,8 +40,8 @@
             <artifactId>webank-models</artifactId>
             <version>1.0.0</version>
         </dependency>
-        
-    </dependencies>
+
+  </dependencies>
     <build>
         <plugins>
             <plugin>

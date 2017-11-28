@@ -1,5 +1,6 @@
 package fr.webank.dataaccessservice.controllers;
 
+import fr.webank.dataaccessservice.services.StockPriceGeneratorService;
 import fr.webank.dataaccessservice.services.StockService;
 import fr.webank.webankmodels.StockDto;
 import fr.webank.webankmodels.StockPriceDto;
@@ -35,7 +36,11 @@ public class StockController {
 
     @RequestMapping(path = "/{stockId}", method = RequestMethod.GET)
     public ResponseEntity <StockPriceDto> getStockPrice(@PathVariable String stockId) {
-        //
-        return new ResponseEntity<>(new StockPriceDto(), HttpStatus.OK);
+
+        StockPriceGeneratorService stockPriceGeneratorService = new StockPriceGeneratorService();
+
+        StockPriceDto stockPriceDto = stockPriceGeneratorService.GenerateStock(stockId);
+
+        return new ResponseEntity<>(stockPriceDto, HttpStatus.OK);
     }
 }

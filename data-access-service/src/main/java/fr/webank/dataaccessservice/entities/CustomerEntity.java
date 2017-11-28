@@ -2,9 +2,11 @@ package fr.webank.dataaccessservice.entities;
 
 import java.util.Date;
 import lombok.Data;
+import lombok.ToString;
+
 import javax.persistence.*;
 
-
+@ToString
 @Data
 @Entity(name = "customers")
 public class CustomerEntity {

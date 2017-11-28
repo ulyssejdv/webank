@@ -12,6 +12,13 @@ public class StockPriceDto {
     private Double stockMinPrice;
     private Double stockExchange;
 
+    public StockPriceDto(String stockDescription, String stockId, Double stockMinPrice,  Double stockMaxPrice) {
+        this.stockId = stockId;
+        this.stockDescription = stockDescription;
+        this.stockMaxPrice = stockMaxPrice;
+        this.stockMinPrice = stockMinPrice;
+    }
+
     public String getStockId() {
         return stockId;
     }

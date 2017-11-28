@@ -11,7 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/stocks")
@@ -25,13 +25,13 @@ public class StockController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<Page<StockDto>> getAllStocks(
+    public ResponseEntity<List> getAllStocks(
             @RequestParam(value = "page", required = false) Integer page,
             @RequestParam(value = "size", required = false) Integer size
     ) {
         //
         Page<StockDto> listStock = stockService.getAllStocks(page, size);
-        return new ResponseEntity<>(listStock, HttpStatus.OK);
+        return new ResponseEntity<>(listStock.getContent(), HttpStatus.OK);
     }
 
     @RequestMapping(path = "/{stockId}", method = RequestMethod.GET)

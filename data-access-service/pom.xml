@@ -78,5 +78,19 @@
 
     </dependencies>
 
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!-- Required for spring-boot:run in a Spring Boot without parent project -->
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+
 
 </project>

@@ -34,13 +34,9 @@ public class BasService implements BasServiceInterface {
 
         CustomerEntity customerEntity = customerRepository.findOne(customerId);
 
-        log.info(customerEntity.toString());
-
         if (customerEntity != null) {
             basEntities = basRepository.findBasEntitiesByCustomer(customerEntity);
         }
-
-        log.info(basEntities.toString());
 
         if (basEntities != null) {
             basDtoList = basEntities.stream().map(
@@ -58,8 +54,6 @@ public class BasService implements BasServiceInterface {
     @Override
     public Optional<BasDto> getBasById(Long id) {
         BasEntity basEntity = basRepository.findOne(id);
-        log.info("BaseService : ");
-        log.info(basEntity.toString());
         return (basEntity != null) ?
                 Optional.of(
                         BasDto.builder()

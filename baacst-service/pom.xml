@@ -52,23 +52,35 @@
             <version>1.0.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>fr.webank</groupId>
+            <artifactId>webank-retrofit</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
 
     </dependencies>
 
-    <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <version>${spring-boot.version}</version>
-        <configuration>
-            <executable>true</executable>
-        </configuration>
-        <executions>
-            <execution>
-                <goals>
-                    <goal>repackage</goal>
-                </goals>
-            </execution>
-        </executions>
-    </plugin>
+    <build>
+        <plugins>
+
+            <!-- Required for spring-boot:run in a Spring Boot without parent project -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+                <configuration>
+                    <executable>true</executable>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

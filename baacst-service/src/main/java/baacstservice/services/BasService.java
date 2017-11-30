@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
-import webank.retrofit.dataaccessservice.DataAccessService;
-import webank.retrofit.dataaccessservice.DataAccessServiceBuilder;
+import webank.http.dataaccessservice.DataAccessServiceHttpClient;
+import webank.http.dataaccessservice.DataAccessServiceBuilder;
+import webank.http.hdfs.WebHdfsServiceBuilder;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.Optional;
 @Service
 public class BasService {
 
-    private DataAccessService service;
+    private DataAccessServiceHttpClient service;
 
     @Autowired
     public BasService(@Value("${webank.data-access-service.url}") String dasUrl, @Value("${webank.data-access-service.port}") String dasPort) {
@@ -68,11 +69,4 @@ public class BasService {
 
         return basDtoList;
     }
-
-    public byte[] getPdf(BasDto basDto) {
-        byte[] pdf = null;
-        // Todo : do some magic http request to the hdfs cluster
-        return pdf;
-    }
-
 }

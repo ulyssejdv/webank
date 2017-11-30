@@ -1,4 +1,4 @@
-package webank.retrofit.dataaccessservice;
+package webank.http.dataaccessservice;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class DataAccessServiceBuilder {
 
-    public static DataAccessService getService(String url, String port) {
+    public static DataAccessServiceHttpClient getService(String url, String port) {
 
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
@@ -32,7 +32,7 @@ public class DataAccessServiceBuilder {
                 .client(httpClient)
                 .build();
 
-        return retrofit.create(DataAccessService.class);
+        return retrofit.create(DataAccessServiceHttpClient.class);
     }
 
 }

@@ -1,6 +1,7 @@
 package baacstservice.controllers;
 
 import baacstservice.services.BasService;
+import baacstservice.services.PdfService;
 import fr.webank.webankmodels.BasDto;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class BasController {
     @Autowired
     private BasService basService;
 
+    @Autowired
+    private PdfService pdfService;
+
     /**
      * Return the list of bank account statement metadata for the given customer
      */
@@ -41,8 +45,6 @@ public class BasController {
     public ResponseEntity<BasDto> getBas(@PathVariable Long basId) {
 
         final Optional<BasDto> dtoOpt = basService.getBas(basId);
-        log.info(dtoOpt.toString());
-        log.info("get bas number : "+ String.valueOf(basId));
 
         return (dtoOpt.isPresent()) ?
                 new ResponseEntity<>(dtoOpt.get(), HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -51,20 +53,22 @@ public class BasController {
     /**
      * Return the true physical bank account statement pdf
      */
-    @GetMapping("/pdf/{basId}")
-    public ResponseEntity<byte[]> getBasPdf(@PathVariable Long basId) {
-        // convert JSON to Employee
-        //Employee emp = convertSomehow(json);
+    @GetMapping("/pdf/{basId}/customer/{customerId}")
+    public ResponseEntity<byte[]> getBasPdf(@PathVariable Long basId, @PathVariable Long customerId) {
 
-        // generate the file
-        //PdfUtil.showHelp(emp);
+        final Optional<BasDto> dtoOpt = basService.getBas(basId);
 
-        // retrieve contents of "C:/tmp/report.pdf" that were written in showHelp
+        BasDto basDto = (dtoOpt.isPresent()) ? dtoOpt.get() : null;
+
         byte[] contents = null;
+
+        if (basDto != null) {
+            contents = pdfService.getPdf(basDto, customerId);
+        }
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.parseMediaType("application/pdf"));
-        String filename = "output.pdf";
+        String filename = basDto.getFileName();
         headers.setContentDispositionFormData(filename, filename);
         headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
         ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(contents, headers, HttpStatus.OK);

@@ -1,4 +1,4 @@
-package webank.retrofit.dataaccessservice;
+package webank.http.dataaccessservice;
 
 import fr.webank.webankmodels.BasDto;
 import retrofit2.Call;
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by ulysse on 29/11/2017.
  */
-public interface DataAccessService {
+public interface DataAccessServiceHttpClient {
 
     @GET("data-access-service/bas/{id}")
     Call<BasDto> basObject(@Path("id") Long id);

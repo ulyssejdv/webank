@@ -1,8 +1,9 @@
 package fr.webank.dataaccessservice.entities;
 
-import java.util.Date;
 import lombok.Data;
+
 import javax.persistence.*;
+import java.util.Date;
 
 
 @Data

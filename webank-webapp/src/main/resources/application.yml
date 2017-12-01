@@ -1,6 +1,6 @@
 # configuration application web avec Spring boot
 server:
-  port: 8080
+  port: 2702
   contextPath: /webank
 
 #MVC

@@ -74,4 +74,18 @@ public class UserController {
         // TODO
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    
+    @RequestMapping(path = "/getalluser", method = RequestMethod.GET)
+    public ResponseEntity getUser() throws Exception {
+        
+        final List<UserDto> userDtoList;
+        try {
+            userDtoList = userService.getAll();
+            return (!userDtoList.isEmpty()) ?
+                           new ResponseEntity(userDtoList, HttpStatus.OK) : new ResponseEntity(HttpStatus.FORBIDDEN);
+        } catch (Exception e) {
+            return new ResponseEntity(HttpStatus.FORBIDDEN);
+        }
+    }
+    
 }

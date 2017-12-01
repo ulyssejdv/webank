@@ -1,11 +1,10 @@
 package fr.webank.dataaccessservice.entities;
 
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 
 import javax.persistence.*;
-
-import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
+import java.util.Date;
 
 @Data
 @Entity(name = "transaction")
@@ -30,8 +29,8 @@ public class Transaction {
 	
 	@Column(name = "amount")
 	private Integer transactionAmount;
-	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+
+	@JsonFormat(locale = "hu", shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", timezone = "Europe/Budapest")
 	@Column(name = "date_transac")
 	private Date   transactionDate;
 }

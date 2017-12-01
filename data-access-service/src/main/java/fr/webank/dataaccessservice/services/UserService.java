@@ -3,6 +3,7 @@ package fr.webank.dataaccessservice.services;
 import fr.webank.dataaccessservice.entities.UserEntity;
 import fr.webank.dataaccessservice.repositories.UserRepository;
 import fr.webank.webankmodels.UserDto;
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 public class UserService implements UserServiceInterface {
 
     private final UserRepository userRepository;
+    DozerBeanMapper mapper = new DozerBeanMapper();
 
     @Autowired
     public UserService(UserRepository userRepository) {
@@ -28,11 +30,7 @@ public class UserService implements UserServiceInterface {
         return userRepository.findAll()
                 .stream()
                 .map(
-                        u -> UserDto.builder()
-                                .id(String.valueOf(u.getId()))
-                                .firstName(u.getFirstName())
-                                .lastName(u.getLastName())
-                                .build()
+                        u -> mapper.map(u, UserDto.class)
                 )
                 .collect(Collectors.toList());
     }
@@ -42,27 +40,15 @@ public class UserService implements UserServiceInterface {
         UserEntity userEntity = userRepository.findOne(Long.parseLong(id));
         return (userEntity != null) ?
                 Optional.of(
-                        UserDto.builder()
-                                .id(String.valueOf(userEntity.getId()))
-                                .firstName(userEntity.getFirstName())
-                                .lastName(userEntity.getLastName())
-                                .build()
+                        mapper.map(userEntity, UserDto.class)
                 )
                 : Optional.empty();
     }
 
     @Override
     public UserDto create(UserDto userDto) {
-        UserEntity userEntity = new UserEntity();
-        userEntity.setFirstName(userDto.getFirstName());
-        userEntity.setLastName(userDto.getLastName());
-
-        UserEntity userEntity1 = userRepository.save(userEntity);
-        return UserDto.builder()
-                .id(String.valueOf(userEntity1.getId()))
-                .firstName(userEntity1.getFirstName())
-                .lastName(userEntity1.getLastName())
-                .build();
+        UserEntity userEntity = userRepository.save(mapper.map(userDto,UserEntity.class));
+        return mapper.map(userEntity, UserDto.class);
     }
 
     @Override

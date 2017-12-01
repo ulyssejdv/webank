@@ -32,9 +32,9 @@ public class CustomerController {
 	}
 	
 	/**
-	 * To get one transaction
+	 * To get one customer
 	 * @param id
-	 * @return JSON Transaction
+	 * @return JSON customers
 	 */
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<CustomerDto> get(@PathVariable @Valid @Pattern(regexp = "[0-9]{1,}") String id) {
@@ -44,7 +44,7 @@ public class CustomerController {
 	}
 	
 	/**
-	 * Get all transactions
+	 * Get all customers
 	 * @return
 	 * @throws Exception
 	 */
@@ -62,7 +62,7 @@ public class CustomerController {
 	}
 	
 	/**
-	 * Create a transaction
+	 * Create a customer
 	 * @param customerDto
 	 * @return
 	 */

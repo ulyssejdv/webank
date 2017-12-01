@@ -64,7 +64,7 @@ public class AccountController {
 	/**
 	 * Create a transaction
 	 * @param accountDto
-	 * @return
+	 * @return new trasaction
 	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<AccountDto> createAccount(@RequestBody AccountDto accountDto) {

@@ -9,7 +9,12 @@ import java.util.Date;
 @Data
 @Entity(name = "customers")
 public class CustomerEntity {
-	
+
+	/**
+	 * Customer
+	 */
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")

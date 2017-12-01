@@ -13,7 +13,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * @author RubenEdery on 19/11/2017.
+ * @author RubenEdery on 19/11/2017
  */
 @Service
 public class TransactionService implements ITransactionService {

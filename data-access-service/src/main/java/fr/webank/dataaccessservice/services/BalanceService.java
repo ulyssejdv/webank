@@ -11,7 +11,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * @author RubenEdery on 23/11/2017.
+ * @author RubenEdery on 23/11/2017
  */
 @Service
 public class BalanceService implements IBalanceService {

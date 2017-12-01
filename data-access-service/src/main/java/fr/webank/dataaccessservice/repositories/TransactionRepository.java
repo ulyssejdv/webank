@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 /**
- * @author RubenEdery on 19/11/2017.
+ * @author RubenEdery on 19/11/2017
  */
 public interface TransactionRepository extends CrudRepository<Transaction, Long>  {
 	List<Transaction> findAll();

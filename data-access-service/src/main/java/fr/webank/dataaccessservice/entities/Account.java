@@ -10,7 +10,12 @@ import java.util.Date;
 @Data
 @Entity(name = "account")
 public class Account {
-	
+
+
+	/**
+	 * Account
+	 */
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)

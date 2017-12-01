@@ -8,6 +8,13 @@ import javax.persistence.*;
 @Data
 @Entity(name = "transactiontype")
 public class TransactionType {
+
+	/**
+	 * Type transaction
+	 */
+
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)

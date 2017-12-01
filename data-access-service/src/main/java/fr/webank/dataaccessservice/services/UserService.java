@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * Created by ulysse on 09/11/2017.
+ * Created by ulysse on 09/11/2017
  */
 @Service
 public class UserService implements UserServiceInterface {

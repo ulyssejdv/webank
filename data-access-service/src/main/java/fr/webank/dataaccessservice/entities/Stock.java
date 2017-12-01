@@ -10,6 +10,12 @@ import javax.persistence.Table;
 @Table(name = "stock", schema = "public")
 public class Stock {
 
+
+    /**
+     * Stock
+     */
+
+
     private String stockId;
     private String stockDescription;
 

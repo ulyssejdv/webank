@@ -18,7 +18,7 @@ public class CustomerController {
 	  @RequestMapping(value="/id",method = {RequestMethod.GET})
 	    public ModelAndView getCustomer() {
 		  
-	        ModelAndView mav = new ModelAndView("response"); //param dans jsp qui est formation
+	        ModelAndView mav = new ModelAndView("response");
 	        RestTemplate restTemplate = new RestTemplate();
 	        String url = "http://localhost:25000/data-access-service/customer/1";
 	        CustomerDto customerDto = restTemplate.getForObject(url, CustomerDto.class); 

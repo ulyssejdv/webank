@@ -5,9 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
-/**
- * Created by SarahAllouche on 20/10/2017.
- */
 @SpringBootApplication(scanBasePackages = {"fr.webank.webankwebapp.controllers"})
 public class Application extends SpringBootServletInitializer{
 

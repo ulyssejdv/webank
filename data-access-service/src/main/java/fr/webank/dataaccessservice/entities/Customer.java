@@ -16,8 +16,13 @@ import lombok.Data;
 @Entity(name = "customers")
 public class Customer {
 
+	/**
+	 * Customer
+	 */
 
-	    @Id
+
+
+	@Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    private Long id;
 

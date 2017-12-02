@@ -10,6 +10,13 @@ import javax.persistence.*;
 @Data
 @Entity(name = "users")
 public class UserEntity {
+
+
+    /**
+     * USer
+     */
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

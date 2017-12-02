@@ -5,6 +5,12 @@ import fr.webank.webankmodels.StockPriceDto;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
+/**
+ * Stock
+ */
+
+
+
 public class StockPriceGeneratorService {
 
     private Dictionary<String, StockPriceDto> listStock;

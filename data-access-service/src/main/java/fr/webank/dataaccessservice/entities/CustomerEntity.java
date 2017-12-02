@@ -1,14 +1,20 @@
 package fr.webank.dataaccessservice.entities;
 
-import java.util.Date;
 import lombok.Data;
+
 import javax.persistence.*;
+import java.util.Date;
 
 
 @Data
 @Entity(name = "customers")
 public class CustomerEntity {
-	
+
+	/**
+	 * Customer
+	 */
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")

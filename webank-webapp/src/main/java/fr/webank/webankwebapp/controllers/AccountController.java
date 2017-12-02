@@ -15,7 +15,7 @@ public class AccountController {
 		  @RequestMapping(value="/id",method = {RequestMethod.GET})
 		    public ModelAndView getAccount() {
 			  
-		        ModelAndView mav = new ModelAndView("Notifier/accountById"); //param dans jsp qui est formation
+		        ModelAndView mav = new ModelAndView("Notifier/accountById");
 		        RestTemplate restTemplate = new RestTemplate();
 		        String url = "http://localhost:25000/data-access-service/account/1";
 		        AccountDto accountDto = restTemplate.getForObject(url, AccountDto.class); 

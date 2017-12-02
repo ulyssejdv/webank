@@ -19,6 +19,9 @@ public class StockPriceDto {
         this.stockMinPrice = stockMinPrice;
     }
 
+    public StockPriceDto() {
+    }
+
     public String getStockId() {
         return stockId;
     }

@@ -2,6 +2,10 @@ package fr.webank.dataaccessservice.entities;
 
 import javax.persistence.*;
 
+/**
+ * @author Alex
+ */
+
 @Entity(name = "Notification")
 public class Notification {
 

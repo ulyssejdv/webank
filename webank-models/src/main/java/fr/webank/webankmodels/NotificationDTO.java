@@ -7,7 +7,7 @@ public class NotificationDTO {
 
     private String idAccount;
     private BigDecimal amount;
-    private Date date;
+    private String dateTime;
     private String transactionType;
     private boolean read;
 
@@ -27,12 +27,12 @@ public class NotificationDTO {
         this.amount = amount;
     }
 
-    public Date getDate() {
-        return date;
+    public String getDate() {
+        return dateTime;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDate(String dateTime) {
+        this.dateTime = dateTime;
     }
 
     public String getTransactionType() {

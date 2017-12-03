@@ -37,7 +37,7 @@
         <module>data-access-service</module>
         <module>webank-models</module>
         <module>webank-webapp</module>
-        <module>automated-testing</module>
+        <module>webank-automated-testing</module>
     </modules>
 
     <dependencyManagement>

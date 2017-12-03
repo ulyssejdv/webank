@@ -30,7 +30,7 @@ public class NotificationController {
     @RequestMapping(path = "/{clientId}", method = RequestMethod.GET)
     public ResponseEntity<List<NotificationDTO>> getClientNotifications(@PathVariable long clientId) {
 
-        List<NotificationDTO> notificationDTOList = notificationService.getClientNotifications(1);
+        List<NotificationDTO> notificationDTOList = notificationService.getClientNotifications(clientId);
 
         // return the notifications to the client
         return new ResponseEntity<List<NotificationDTO>>(notificationDTOList, HttpStatus.OK);

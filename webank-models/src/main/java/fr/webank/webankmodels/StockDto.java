@@ -14,4 +14,12 @@ import lombok.ToString;
 public class StockDto {
     private String stockId;
     private String stockDescription;
+
+    public String getStockId() {
+        return stockId;
+    }
+
+    public String getStockDescription() {
+        return stockDescription;
+    }
 }

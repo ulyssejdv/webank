@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
  */
 
 @RunWith(Cucumber.class)
-@CucumberOptions(monochrome = true, tags = "@ws-stocks", features = "src/main/resources/features", plugin = {
+@CucumberOptions(monochrome = true, tags = "@ws-stocks-prices", features = "src/main/resources/features", plugin = {
         "pretty", "html:target/cucumber" }, glue = "fr.webank.automated_testing.dataaccessservice.definition")
-public class WsStocksInvocationStepDefinitionTest {
+public class WsStockPriceInvocationStepDefinitionTest {
 }

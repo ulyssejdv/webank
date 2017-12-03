@@ -34,17 +34,10 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="font-size:22px;">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notification Client <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/webank/account/id">Simuler un mouvement</a></li>
-                        <li><a href="/webank/account/id/accueilClient">Mon compte</a></li>
-                    </ul>
+                    <a href="/webank/account/id/accueilClient" role="button" aria-haspopup="true" aria-expanded="false">Acceuil<span class="caret"></span></a>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bourse <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/webank/stockExchange/">CAC 40</a></li>
-                    </ul>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mes notifications<span class="caret"></span></a>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->

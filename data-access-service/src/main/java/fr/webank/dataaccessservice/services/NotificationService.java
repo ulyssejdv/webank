@@ -1,12 +1,13 @@
 package fr.webank.dataaccessservice.services;
 
 import fr.webank.dataaccessservice.entities.Notification;
+import fr.webank.dataaccessservice.repositories.INotificationRepository;
 import fr.webank.webankmodels.NotificationDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,7 +17,12 @@ import java.util.List;
 @Service
 public class NotificationService {
 
-    public List<NotificationDTO> getClientNotifications(long idClient) {
+    @Autowired
+    private INotificationRepository notificationRepository;
+
+    public List<NotificationDTO> getClientNotifications(long idCustomer) {
+
+        List<Notification> notificationList = notificationRepository.getCustomerNotifications(idCustomer);
 
         List<NotificationDTO> notificationDTOList = new ArrayList<NotificationDTO>();
 

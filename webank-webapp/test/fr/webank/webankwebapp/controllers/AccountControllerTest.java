@@ -34,10 +34,8 @@
 //        AccountDto accountDto= new AccountDto();
 //
 //        accountDto.setId(1);
-//        accountDto.setMail("mariam@haidara.fr");
-//        accountDto.setFirstname("Mariam");
-//        accountDto.setLastname("Haidara");
-//        accountDto.setCity("Paris");
+//        accountDto.setAccountNumber("1");
+//        accountDto.setType("Courant");
 //
 //        ModelAndView response = accountControllerSUT.getAccount();
 //

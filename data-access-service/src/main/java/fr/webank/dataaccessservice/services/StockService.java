@@ -12,11 +12,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 /**
- * Created by Linda
+ * Created by Ayda Najjar.
  */
-
 
 @Service
 public class StockService {

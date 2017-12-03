@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Created by Ayda Najjar.
+ */
+
 @RestController
 @RequestMapping(path = "/stocks")
 public class StockController {

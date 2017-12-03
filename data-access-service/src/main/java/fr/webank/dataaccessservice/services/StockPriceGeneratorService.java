@@ -6,9 +6,8 @@ import java.util.Dictionary;
 import java.util.Hashtable;
 
 /**
- * Stock
+ * Created by Ayda Najjar.
  */
-
 
 
 public class StockPriceGeneratorService {

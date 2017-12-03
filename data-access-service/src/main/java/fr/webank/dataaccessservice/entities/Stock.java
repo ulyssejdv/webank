@@ -6,14 +6,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Created by Ayda Najjar.
+ */
+
+
 @Entity
 @Table(name = "stock", schema = "public")
 public class Stock {
-
-
-    /**
-     * Stock
-     */
 
 
     private String stockId;

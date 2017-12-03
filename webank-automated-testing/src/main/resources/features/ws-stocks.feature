@@ -1,4 +1,5 @@
-@featureTest @ws-stocks
+@featureTest
+@ws-stocks
 Feature: ws-stocks
 
   @Scenario
@@ -7,3 +8,4 @@ Feature: ws-stocks
     Given the rest frontend service at "http://localhost:25000/data-access-service/stocks?size=10&page=2"
     When  request the list of stocks
     Then  checks the results
+

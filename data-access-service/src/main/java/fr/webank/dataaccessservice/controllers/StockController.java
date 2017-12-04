@@ -6,7 +6,6 @@ import fr.webank.webankmodels.StockDto;
 import fr.webank.webankmodels.StockPriceDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,10 +21,12 @@ import java.util.List;
 public class StockController {
 
     private final StockService stockService;
+    private final StockPriceGeneratorService stockPriceGeneratorService;
 
     @Autowired
-    public StockController(StockService stockService) {
+    public StockController(StockService stockService, StockPriceGeneratorService stockPriceGeneratorService) {
         this.stockService = stockService;
+        this.stockPriceGeneratorService = stockPriceGeneratorService;
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -41,10 +42,10 @@ public class StockController {
     @RequestMapping(path = "/{stockId}", method = RequestMethod.GET)
     public ResponseEntity <StockPriceDto> getStockPrice(@PathVariable String stockId) {
 
-        StockPriceGeneratorService stockPriceGeneratorService = new StockPriceGeneratorService();
-
         StockPriceDto stockPriceDto = stockPriceGeneratorService.GenerateStock(stockId);
-
-        return new ResponseEntity<>(stockPriceDto, HttpStatus.OK);
+        if (stockPriceDto == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<>(stockPriceDto, HttpStatus.OK);
     }
 }

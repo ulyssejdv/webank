@@ -29,10 +29,15 @@ public class stocksControllerTest {
     @Mock
     private StockService stockServiceMock;
 
+    @Mock
+    private StockPriceGeneratorService stockPriceGeneratorServiceMock;
+
     @InjectMocks
     private StockController StockControllerInjectMock;
 
     private Page<StockDto> pageStocks;
+
+    private StockPriceDto stockPrice;
 
     @Before
     public void setup() {
@@ -50,6 +55,14 @@ public class stocksControllerTest {
 
         pageStocks = new PageImpl<StockDto>(listStocks);
 
+        stockPrice = new StockPriceDto("ACCOR","FR0000120404 AC",41.0,42.5);;
+
+        stockPrice.setStockOpenPrice(42.00);
+
+
+        stockPrice.setStockPrice(41.05);
+
+        stockPrice.setStockPriceChange(1.00);
     }
 
     @Test
@@ -73,6 +86,38 @@ public class stocksControllerTest {
         Assert.assertTrue(testOk);
     }
 
-   
+    @Test
+    public void shouldReturnStockPrice() {
+
+        when(stockPriceGeneratorServiceMock.GenerateStock(anyString()))
+                .thenReturn(stockPrice);
+
+        ResponseEntity<StockPriceDto> response = StockControllerInjectMock.getStockPrice(anyString());
+
+        StockPriceDto body = (StockPriceDto)response.getBody();
+
+        boolean testOk = response.getStatusCode() == HttpStatus.OK
+                && body.getStockDescription() == stockPrice.getStockDescription()
+                && body.getStockId() == stockPrice.getStockId()
+                && body.getStockMinPrice() == stockPrice.getStockMinPrice()
+                && body.getStockMaxPrice() == stockPrice.getStockMaxPrice()
+                && body.getStockOpenPrice() == stockPrice.getStockOpenPrice()
+                && body.getStockPrice() == stockPrice.getStockPrice()
+                && body.getStockPriceChange() == stockPrice.getStockPriceChange();
+
+        Assert.assertTrue(testOk);
+    }
+
+    @Test
+    public void shouldReturnStockPriceNotFound() {
+        when(stockPriceGeneratorServiceMock.GenerateStock(anyString()))
+                .thenReturn(null);
+
+        ResponseEntity<StockPriceDto> response = StockControllerInjectMock.getStockPrice(anyString());
+
+        boolean testOk = response.getStatusCode() == HttpStatus.NOT_FOUND;
+
+        Assert.assertTrue(testOk);
+    }
 }
 

@@ -19,6 +19,14 @@ public class Stock {
     private String stockId;
     private String stockDescription;
 
+    public Stock() {
+    }
+
+    public Stock(String stockId, String stockDescription) {
+        this.stockId = stockId;
+        this.stockDescription = stockDescription;
+    }
+
     @Id
     @Column(name = "stockid", length = 50)
     public String getStockId() { return stockId; }

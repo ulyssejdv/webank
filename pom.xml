@@ -39,6 +39,7 @@
         <module>webank-webapp</module>
         <module>webank-http-client</module>
         <module>baacst-service</module>
+        <module>mobile-front</module>
     </modules>
 
     <dependencyManagement>

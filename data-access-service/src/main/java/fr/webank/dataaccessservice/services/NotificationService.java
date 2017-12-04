@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,27 +25,58 @@ public class NotificationService {
 
     public List<NotificationDTO> getClientNotifications(long idCustomer) {
 
+        // get customer notifications from the repository
         List<Notification> notificationList = notificationRepository.getCustomerNotifications(idCustomer);
 
-        List<NotificationDTO> notificationDTOList = new ArrayList<NotificationDTO>();
+        // create an empty list of notification
+        List<NotificationDTO> notificationDTOList = new ArrayList<>();
+        NotificationDTO notificationDTO;
 
-        NotificationDTO notif1 = new NotificationDTO();
-        notif1.setAmount(new BigDecimal(150.50));
-        notif1.setDate("01/01/2017 13:09");
-        notif1.setIdAccount("FR 1983783");
-        notif1.setRead(false);
-        notif1.setTransactionType("virement");
+        // browse the Notification list, build NotificationDTO objects and put them in a list
+        for (Notification notification : notificationList) {
+            notificationDTO = new NotificationDTO();
 
-        NotificationDTO notif2 = new NotificationDTO();
-        notif2.setAmount(new BigDecimal(14.58));
-        notif2.setDate("02/02/2017 21:30");
-        notif2.setIdAccount("FR 000001");
-        notif2.setRead(true);
-        notif2.setTransactionType("remise de cheques");
+            // set transaction amount
+            BigDecimal amount = new BigDecimal(notification.getTransaction().getTransactionAmount());
+            if (amount != null) {
+                notificationDTO.setAmount(amount);
+            } else {
+                amount = new BigDecimal(0);
+            }
 
-        notificationDTOList.add(notif1);
-        notificationDTOList.add(notif2);
+            // set transaction date
+            Date transactionDate = notification.getTransaction().getTransactionDate();
+            if (transactionDate != null) {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                notificationDTO.setDate(sdf.format(notification.getTransaction().getTransactionDate()));
+            } else {
+                notificationDTO.setDate("Date inconnue");
+            }
 
+            // set transaction account id
+            String accountNumber = notification.getTransaction().getAccountTo().getAccountNumber();
+            if (accountNumber != null) {
+                notificationDTO.setIdAccount(accountNumber);
+            } else {
+                notificationDTO.setIdAccount("Compte inconnu");
+            }
+
+            // set notification read or not read status
+            notificationDTO.setRead(notification.isRead());
+
+            // set transaction type
+            String transactionType = notification.getTransaction().getTransactionType().getTransactionTypeName();
+            if (transactionType != null) {
+                notificationDTO.setTransactionType(transactionType);
+            } else {
+                notificationDTO.setTransactionType("Type inconnu");
+            }
+
+            // add the notification to the notifications list
+            notificationDTOList.add(notificationDTO);
+        }
+
+        // return the NotificationDTO list created previously
         return notificationDTOList;
     }
 

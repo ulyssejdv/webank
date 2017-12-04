@@ -23,21 +23,21 @@ public class NotificationRepository implements INotificationRepository {
         //Query query = entityManager.createQuery("select c from Conversation c where c.customer.id = :idCustomer");
         //query.setParameter("idCustomer",idCustomer);
 
-        /*Query query = entityManager.createQuery("select n " +
+        Query query = entityManager.createQuery("select n " +
                 "from Notification n " +
-                "where n.transaction.accountFrom.customerentity.idCustomer = :idCustomer " +
-                "or n.transaction.accountTo.customerentity.idCustomer = :idCustomer");
+                "where n.transaction.accountFrom.customer.idCustomer = :idCustomer " +
+                "or n.transaction.accountTo.customer.idCustomer = :idCustomer");
         query.setParameter("idCustomer",idCustomer);
 
         List<Notification> notificationArrayList = query.getResultList();
 
-        for (Notification n : notificationArrayList) {
+        /*for (Notification n : notificationArrayList) {
             System.out.println("amount : " + n.getTransaction().getTransactionAmount());
         }*/
 
-        List<Notification> notificationArrayList = new ArrayList<Notification>();
+        /*List<Notification> notificationArrayList = new ArrayList<Notification>();
         Notification n = new Notification();
-        notificationArrayList.add(n);
+        notificationArrayList.add(n);*/
 
         return notificationArrayList;
     }

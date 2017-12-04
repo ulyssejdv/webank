@@ -6,6 +6,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
+/**
+ * Created by Ayda
+ */
 
 // implement the crud of stocks (create, read, update, delete)
 public interface StockRepository extends CrudRepository<Stock, Long> {

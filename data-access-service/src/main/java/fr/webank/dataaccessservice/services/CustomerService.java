@@ -11,7 +11,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * @author RubenEdery on 23/11/2017.
+ * @author RubenEdery on 23/11/2017
  */
 @Service
 public class CustomerService implements ICustomerService {
@@ -22,8 +22,11 @@ public class CustomerService implements ICustomerService {
 	public CustomerService(CustomerRepository customerRepository) {
 		this.customerRepository = customerRepository;
 	}
-	
-	
+
+	/**
+	 * Get all customer
+	 * @return List Customers
+	 */
 	@Override
 	public List<CustomerDto> getAll() {
 		return customerRepository.findAll()
@@ -32,7 +35,13 @@ public class CustomerService implements ICustomerService {
 							   u -> mapper.map(u, CustomerDto.class)
 					   )
 					   .collect(Collectors.toList());	}
-	
+
+
+	/**
+	 * get customer by his id
+	 * @param id
+	 * @return One customer
+	 */
 	@Override
 	public Optional<CustomerDto> getCustomerById(String id) {
 		CustomerEntity customer = customerRepository.findOne(Long.parseLong(id));
@@ -42,13 +51,24 @@ public class CustomerService implements ICustomerService {
 					   )
 					   : Optional.empty();
 	}
-	
+
+	/**
+	 * Create new customer
+	 * @param customerDto
+	 * @return new customers
+	 */
 	@Override
 	public CustomerDto create(CustomerDto customerDto) {
 		CustomerEntity customerEntity = customerRepository.save(mapper.map(customerDto,CustomerEntity.class));
 		return mapper.map(customerEntity, CustomerDto.class);
 	}
-	
+
+	/**
+	 * Update a customer
+	 * Need to use put, patch or delete method
+	 * @param id
+	 * @param customerDto
+	 */
 	@Override
 	public void update(String id, CustomerDto customerDto) {
 		

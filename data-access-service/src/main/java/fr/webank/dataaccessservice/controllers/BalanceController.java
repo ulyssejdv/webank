@@ -34,9 +34,9 @@ public class BalanceController {
 	}
 	
 	/**
-	 * To get one transaction
+	 * To get one balance
 	 * @param id
-	 * @return JSON Transaction
+	 * @return JSON balances
 	 */
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<BalanceDto> get(@PathVariable @Valid @Pattern(regexp = "[0-9]{1,}") String id) {
@@ -46,7 +46,7 @@ public class BalanceController {
 	}
 	
 	/**
-	 * Get all transactions
+	 * Get all balances
 	 * @return
 	 * @throws Exception
 	 */
@@ -64,7 +64,7 @@ public class BalanceController {
 	}
 	
 	/**
-	 * Create a transaction
+	 * Create a balance
 	 * @param balanceDto
 	 * @return
 	 */

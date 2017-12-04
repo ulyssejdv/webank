@@ -1,28 +1,21 @@
 package fr.webank.dataaccessservice.entities;
 
-import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
+import java.util.Date;
 
 
 @Data
 @Entity(name = "balance")
 public class Balance {
-    
+
+    /**
+     * Balance
+     */
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
@@ -30,13 +23,9 @@ public class Balance {
     
     @Column(name = "balance")
     private Integer balance;
-    
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    @Temporal(TemporalType.DATE)
-    @Column(name = "last_date_balance", length = 13)
-    private Date lastBalanceDate;
-    
-    
 
+    @JsonFormat(locale = "hu", shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", timezone = "Europe/Budapest")
+    @Column(name = "last_date_balance")
+    private Date lastBalanceDate;
     
 }

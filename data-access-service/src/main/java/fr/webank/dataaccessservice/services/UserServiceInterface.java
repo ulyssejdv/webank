@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Created by ulysse on 09/11/2017.
+ * Created by ulysse on 09/11/2017
  */
 public interface UserServiceInterface {
 

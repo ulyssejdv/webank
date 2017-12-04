@@ -37,6 +37,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notification Client <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/webank/account/id">Simuler un mouvement</a></li>
+                        <li><a href="/webank/account/id/accueilClient">Mon compte</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

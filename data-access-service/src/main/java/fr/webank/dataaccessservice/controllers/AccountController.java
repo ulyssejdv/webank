@@ -32,9 +32,9 @@ public class AccountController {
 	}
 	
 	/**
-	 * To get one transaction
+	 * To get one account
 	 * @param id
-	 * @return JSON Transaction
+	 * @return JSON account
 	 */
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<AccountDto> get(@PathVariable @Valid @Pattern(regexp = "[0-9]{1,}") String id) {
@@ -44,7 +44,7 @@ public class AccountController {
 	}
 	
 	/**
-	 * Get all transactions
+	 * Get all account
 	 * @return
 	 * @throws Exception
 	 */
@@ -62,13 +62,30 @@ public class AccountController {
 	}
 	
 	/**
-	 * Create a transaction
+	 * Create a account
 	 * @param accountDto
-	 * @return
+	 * @return new trasaction
 	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<AccountDto> createAccount(@RequestBody AccountDto accountDto) {
 		return new ResponseEntity<>(accountService.create(accountDto), HttpStatus.OK);
 	}
-	
+
+	/**
+	 * Get account by id
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(path = "/getaccountsbyid/{id}" , method = RequestMethod.GET)
+	public ResponseEntity getAccountByCustomer(@PathVariable @Valid @Pattern(regexp = "[0-9]{1,}") String id) throws Exception {
+		try {
+			List<AccountDto> accountDtoList =accountService.getAllAccountOfUser(id);
+			return (!accountDtoList.isEmpty()) ?
+					new ResponseEntity(accountDtoList, HttpStatus.OK) : new ResponseEntity(HttpStatus.FORBIDDEN);
+		} catch (Exception e) {
+			return new ResponseEntity(HttpStatus.FORBIDDEN);
+		}
+	}
+
 }

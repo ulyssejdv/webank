@@ -1,13 +1,12 @@
 package fr.webank.dataaccessservice.services;
 
-import fr.webank.dataaccessservice.entities.Account;
 import fr.webank.webankmodels.AccountDto;
 
 import java.util.List;
 import java.util.Optional;
 
 /**
- * @author RubenEdery on 23/11/2017.
+ * @author RubenEdery on 23/11/2017
  */
 public interface IAccountService {
 	
@@ -18,5 +17,7 @@ public interface IAccountService {
 	AccountDto create(AccountDto accountDto);
 	
 	void update(String id, AccountDto accountDto);
-	
+
+	List<AccountDto> getAllAccountOfUser(String id) throws Exception;
+
 }

@@ -5,6 +5,12 @@ import java.util.Optional;
 
 import fr.webank.webankmodels.CustomerDto;
 
+
+/**
+ * Interface
+ */
+
+
 public interface CustomerServiceInterface {
 	
 	    List<CustomerDto> getAll();

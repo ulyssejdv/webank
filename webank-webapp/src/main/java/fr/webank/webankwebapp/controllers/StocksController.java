@@ -2,8 +2,6 @@ package fr.webank.webankwebapp.controllers;
 
 import fr.webank.webankmodels.StockDto;
 import fr.webank.webankmodels.StockPriceDto;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,16 +25,11 @@ public class StocksController {
         ModelAndView modelAndView = new ModelAndView("stockExchange/viewStocks");
 
         List<StockDto> stockDtoList = new ArrayList<StockDto>();
-/*
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<StockDto> pageResponseEntity = restTemplate.getForEntity("http://localhost:25000//data-access-service/stocks?page=0&size=5",StockDto.class);
 
-        System.out.println(pageResponseEntity.getBody());
-*/
-        StockDto stockDto1 = StockDto.builder().build();
-        stockDto1.setStockId("coucou");
-        stockDto1.setStockDescription("salut");
-        stockDtoList.add(stockDto1);
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<List> responseEntity = restTemplate.getForEntity("http://localhost:25000//data-access-service/stocks?page=0&size=5",List.class);
+
+        stockDtoList = responseEntity.getBody();
 
         modelAndView.addObject("listStock", stockDtoList);
 
@@ -47,17 +40,11 @@ public class StocksController {
     public ModelAndView getStockDetails(@PathVariable String stockId) {
         ModelAndView modelAndView = new ModelAndView("stockExchange/viewStockDetails");
 
-        System.out.println(stockId);
+        String URL = "http://localhost:25000//data-access-service/stocks/" + stockId;
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<StockPriceDto> responseEntity = restTemplate.getForEntity(URL,StockPriceDto.class);
 
-        StockPriceDto stockPriceDto = new StockPriceDto();
-        stockPriceDto.setStockId(stockId);
-        stockPriceDto.setStockDescription("newdescritpion");
-        stockPriceDto.setStockExchange(23D);
-        stockPriceDto.setStockMaxPrice(99D);
-        stockPriceDto.setStockMinPrice(11D);
-        stockPriceDto.setStockOpenPrice(43D);
-        stockPriceDto.setStockPrice(85D);
-        stockPriceDto.setStockPriceChange(23D);
+        StockPriceDto stockPriceDto = responseEntity.getBody();
 
         modelAndView.addObject("stockDetails", stockPriceDto);
 

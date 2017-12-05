@@ -11,6 +11,17 @@ public class NotificationDTO {
     private String transactionType;
     private boolean read;
 
+    public NotificationDTO() {
+    }
+
+    public NotificationDTO(String idAccount, BigDecimal amount, String date, String transactionType, boolean read) {
+        this.idAccount = idAccount;
+        this.amount = amount;
+        this.date = date;
+        this.transactionType = transactionType;
+        this.read = read;
+    }
+
     public String getIdAccount() {
         return idAccount;
     }

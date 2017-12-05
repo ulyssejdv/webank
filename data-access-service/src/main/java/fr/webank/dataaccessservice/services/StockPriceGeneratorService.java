@@ -1,21 +1,23 @@
 package fr.webank.dataaccessservice.services;
 
 import fr.webank.webankmodels.StockPriceDto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Dictionary;
 import java.util.Hashtable;
 
 /**
- * Stock
+ * Created by Ayda Najjar.
  */
 
-
-
+@Service
 public class StockPriceGeneratorService {
 
     private Dictionary<String, StockPriceDto> listStock;
 
     //Constructor: initialize the static list of CAC 40
+    @Autowired
     public StockPriceGeneratorService() {
         //Initialize list of stock in a hashtable
         listStock = new Hashtable<>();

@@ -1,5 +1,8 @@
 package fr.webank.webankmodels;
 
+/**
+ * Created by Ayda Najjar.
+ */
 
 public class StockPriceDto {
 

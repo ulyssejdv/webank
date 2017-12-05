@@ -71,6 +71,7 @@ public class BasController {
         String filename = basDto.getFileName();
         headers.setContentDispositionFormData(filename, filename);
         headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+
         ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(contents, headers, HttpStatus.OK);
         return response;
     }

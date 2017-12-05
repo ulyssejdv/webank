@@ -2,6 +2,7 @@ package controller;
 
 import fr.webank.webankmodels.AccountDto;
 import fr.webank.webankmodels.TransactionDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestTemplate;
 
@@ -15,14 +16,26 @@ import javax.annotation.PostConstruct;
  */
 public class RestManagement {
 
-    //@Value("${client.service.url}") static String url;
-    //@Value("${client.service.port}") static String port;
-    //@Value("${client.service.path}") static String path;
+    /*private static String url;
+    private static String port;
+    private static String path;
+
+    @Autowired
+    public RestManagement(
+
+            @Value("${client.service.urll}") String url,
+            @Value("${client.service.port}") String port,
+            @Value("${client.service.path}") String path) {
+        this.port = port;
+        this.url = url;
+        this.path = path;
+    }*/
+
 
 
 
     public static final String REST_SERVICE_URI = "http://localhost:25000/data-access-service/";
-    //public static final String REST_SERVICE_URI = url+port+path;
+   // public static final String REST_SERVICE_URI = url+port+path;
 
     public static AccountDto[] getResponse(String endPath,
                                            long id){

@@ -10,7 +10,7 @@ import javax.annotation.PostConstruct;
 
 
 /**
- * @author EDERY Ruben
+ * @author EDERY Ruben.
  * Date     04/11/2017
  * Time     22:08
  */

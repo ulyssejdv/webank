@@ -1,8 +1,7 @@
-package controller;
+package statementmanager;
 
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -10,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import service.AccountStatementService;
 
 /**
  * Created by boubacar on 30/11/2017.
@@ -19,10 +17,8 @@ import service.AccountStatementService;
 @Controller
 public class AccountStatementController {
 
-
+@Autowired
     private AccountStatementService pdfService;
-
-
 
 //http://localhost:8001/mobile-front/releve/pdf/1
 

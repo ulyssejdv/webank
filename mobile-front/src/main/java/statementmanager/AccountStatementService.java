@@ -1,6 +1,5 @@
-package service;
+package statementmanager;
 
-import fr.webank.webankmodels.BasDto;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,7 +12,6 @@ import java.io.IOException;
  * Created by boubacar on 30/11/2017.
  */
 @Log
-
 @Service
 public class AccountStatementService {
 
@@ -52,7 +50,7 @@ public class AccountStatementService {
         byte[] pdf = null;
         StringBuilder fullUrl = new StringBuilder();
         fullUrl.append(this.url).append(":").append(port).append(this.service).
-        append("/").append(customerId);
+                append("/").append(customerId);
         log.info(fullUrl.toString());
         try {
             pdf = WebHdfsServiceBuilder.run(fullUrl.toString());

@@ -41,6 +41,7 @@
         <module>baacst-service</module>
         <module>mobile-front</module>
         <module>webank-automated-testing</module>
+        <module>front-android</module>
     </modules>
 
     <dependencyManagement>

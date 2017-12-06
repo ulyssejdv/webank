@@ -18,4 +18,6 @@ public class BasDto {
 
     // it is a timestamp
     private Long createdAt;
+
+
 }

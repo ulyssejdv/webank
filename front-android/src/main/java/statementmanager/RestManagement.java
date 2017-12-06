@@ -34,7 +34,7 @@ public class RestManagement {
 
 
 
-    public static final String REST_SERVICE_URI = "http://10.168.1.4::25000/data-access-services/";
+    public static final String REST_SERVICE_URI = "http://10.168.1.4:25000/data-access-services";
    // public static final String REST_SERVICE_URI = url+port+path;
 
     public static AccountDto[] getResponse(String endPath,

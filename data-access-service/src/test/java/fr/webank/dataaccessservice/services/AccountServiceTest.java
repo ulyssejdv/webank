@@ -12,9 +12,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
@@ -115,7 +115,29 @@ public class AccountServiceTest {
 
     }
 
+    @Test
+    public void ShouldNotReturnGetTypeAccount() throws Exception {
+
+        List<AccountDto> accountDto = accountService.getAll();
+        accountDto.size();
+        assertFalse(accountDto.get(1).getType().toString().equals("TypeError"));
+
+    }
 
 
+    @Test
+    public void ShouldReturnGoodAccount(){
+        Optional<AccountDto> accountDto = accountService.getAccountById("1");
+        //System.out.print("CHECK : "+accountDto.get().getAccountNumber().toString());
+        assertTrue(accountDto.get().getAccountNumber().toString().equals("1"));
+    }
+
+
+    @Test
+    public void ShouldNotReturnGoodAccount(){
+        Optional<AccountDto> accountDto = accountService.getAccountById("1");
+        //System.out.print("CHECK : "+accountDto.get().getAccountNumber().toString());
+        assertFalse(accountDto.get().getAccountNumber().toString().equals("2"));
+    }
 
 }

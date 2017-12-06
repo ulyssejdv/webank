@@ -1,6 +1,6 @@
 @featureTest
 @ws-stocks
-Feature: ws-stocks
+Feature: Nous devons récupérer le nombre demandé des titre selon page et size
 
   @Scenario
   Scenario: Get all stocks from data base

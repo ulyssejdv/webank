@@ -1,6 +1,6 @@
 @featureTest
 @ws-stocks-prices
-Feature: ws-stocks-prices
+Feature: test la génération des cours de titre
 
   @Scenario
   Scenario: Get stock prices from data base

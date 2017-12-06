@@ -13,6 +13,7 @@ import java.io.IOException;
  * Created by boubacar on 30/11/2017.
  */
 @Log
+
 @Service
 public class AccountStatementService {
 

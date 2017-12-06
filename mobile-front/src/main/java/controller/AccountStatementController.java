@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import service.AccountStatementService;
 
 /**
  * Created by boubacar on 30/11/2017.
@@ -17,8 +18,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class AccountStatementController {
 
-    @Autowired
+
     private AccountStatementService pdfService;
+
+
 
 //http://localhost:8001/mobile-front/releve/pdf/1
 

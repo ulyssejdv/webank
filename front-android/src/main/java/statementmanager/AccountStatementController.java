@@ -22,7 +22,7 @@ public class AccountStatementController {
 
 //http://localhost:8001/mobile-front/releve/pdf/1
 
-    @GetMapping("releve/pdf/{basId}")
+    @GetMapping("/releve/pdf/{basId}")
     public ResponseEntity<byte[]> GetAccountStatementPDF(@PathVariable Long basId) {
 
         byte[] contents = pdfService.getMyPDF(basId);
@@ -35,7 +35,7 @@ public class AccountStatementController {
 
 //route : http://localhost:8001/mobile-front/releve/infos/1
 
-    @GetMapping("releve/infos/{basId}")
+    @GetMapping("/releve/infos/{basId}")
     public ResponseEntity<byte[]> GetAccountStatementJSON(@PathVariable Long basId) {
 
         byte[] contents = pdfService.getMyJsonDocumnt(basId);

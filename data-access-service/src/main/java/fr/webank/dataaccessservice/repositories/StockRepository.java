@@ -13,6 +13,7 @@ import java.util.List;
 
 // implement the crud of stocks (create, read, update, delete)
 public interface StockRepository extends CrudRepository<Stock, Long> {
+    //SpringFramework generate the query "select * from stock" and return results
     // return the list of stocks from DB
     Page<Stock> findAll(Pageable pageable);
 }

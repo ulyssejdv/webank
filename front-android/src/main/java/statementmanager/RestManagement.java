@@ -23,9 +23,9 @@ public class RestManagement {
     @Autowired
     public RestManagement(
 
-            @Value("${client.service.urll}") String url,
-            @Value("${client.service.port}") String port,
-            @Value("${client.service.path}") String path) {
+            @Value("${client.services.urll}") String url,
+            @Value("${client.services.port}") String port,
+            @Value("${client.services.path}") String path) {
         this.port = port;
         this.url = url;
         this.path = path;
@@ -34,7 +34,7 @@ public class RestManagement {
 
 
 
-    public static final String REST_SERVICE_URI = "http://localhost:25000/data-access-service/";
+    public static final String REST_SERVICE_URI = "http://10.168.1.4:25000/data-access-service";
    // public static final String REST_SERVICE_URI = url+port+path;
 
     public static AccountDto[] getResponse(String endPath,

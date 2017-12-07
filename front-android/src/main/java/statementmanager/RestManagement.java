@@ -1,12 +1,8 @@
-package controller;
+package statementmanager;
 
 import fr.webank.webankmodels.AccountDto;
 import fr.webank.webankmodels.TransactionDto;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestTemplate;
-
-import javax.annotation.PostConstruct;
 
 
 /**

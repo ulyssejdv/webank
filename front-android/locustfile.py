@@ -10,6 +10,10 @@ class WebsiteTasks(TaskSet):
     @task
     def getaccountsbyid(self):
         self.client.get("/account/getaccountsbyid/1")
+
+    @task
+    def getatransactionbyaccount(self):
+        self.client.get("transaction/gettransactionsbyaccount/2")
         
 
 class WebsiteUser(HttpLocust):

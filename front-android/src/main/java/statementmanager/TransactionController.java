@@ -1,4 +1,4 @@
-package statementmanager;
+package controller;
 
 import fr.webank.webankmodels.TransactionDto;
 import org.springframework.http.HttpStatus;

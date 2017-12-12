@@ -27,7 +27,7 @@ public class StocksController {
         List<StockDto> stockDtoList = new ArrayList<StockDto>();
 
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<List> responseEntity = restTemplate.getForEntity("http://localhost:25000//data-access-service/stocks?page=0&size=38",List.class);
+        ResponseEntity<List> responseEntity = restTemplate.getForEntity("http://10.168.1.4:25000//data-access-service/stocks?page=0&size=38",List.class);
 
         stockDtoList = responseEntity.getBody();
 
@@ -40,7 +40,7 @@ public class StocksController {
     public ModelAndView getStockDetails(@PathVariable String stockId) {
         ModelAndView modelAndView = new ModelAndView("stockExchange/viewStockDetails");
 
-        String URL = "http://localhost:25000//data-access-service/stocks/" + stockId;
+        String URL = "http://10.168.1.4:25000//data-access-service/stocks/" + stockId;
 
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<StockPriceDto> responseEntity = restTemplate.getForEntity(URL,StockPriceDto.class);

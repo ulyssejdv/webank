@@ -31,6 +31,8 @@
         <junit.version>4.12</junit.version>
         <mockito.version>2.11.0</mockito.version>
 
+        <docker.image.prefix>webank</docker.image.prefix>
+
     </properties>
 
     <modules>

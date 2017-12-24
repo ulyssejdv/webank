@@ -28,7 +28,7 @@ public class AccountController {
 			  
 		        ModelAndView mav = new ModelAndView("Notifier/accountById");
 		        RestTemplate restTemplate = new RestTemplate();
-		        String url = "http://localhost:25000/data-access-service/account/1";
+		        String url = "http://10.168.1.4:25000/data-access-service/account/1";
 		        AccountDto accountDto = restTemplate.getForObject(url, AccountDto.class); 
 		        mav.addObject("account", accountDto);
 		        
@@ -41,7 +41,7 @@ public class AccountController {
 			  
 		        ModelAndView mav = new ModelAndView("Notifier/PersonalAccountHomePage");
 		        RestTemplate restTemplate = new RestTemplate();
-		        String url = "http://localhost:25000/data-access-service/account/1";
+		        String url = "http://10.168.1.4:25000/data-access-service/account/1";
 		        AccountDto accountDto = restTemplate.getForObject(url, AccountDto.class); 
 		        mav.addObject("account", accountDto);
 		        
@@ -63,13 +63,13 @@ public class AccountController {
 			  
 		        ModelAndView mav = new ModelAndView("Notifier/PersonalAccount");
 		        RestTemplate restTemplate = new RestTemplate();
-		        String url = "http://localhost:25000/data-access-service/account/1";
+		        String url = "http://10.168.1.4:25000/data-access-service/account/1";
 		        AccountDto accountDto = restTemplate.getForObject(url, AccountDto.class); 
 
 		        List<NotificationDTO> notificationDto = new ArrayList<NotificationDTO>();
 
 		        RestTemplate restTemplate2 = new RestTemplate();
-		        ResponseEntity<List> responseEntity = restTemplate2.getForEntity("http://localhost:25000/data-access-service/notifications/1",List.class);
+		        ResponseEntity<List> responseEntity = restTemplate2.getForEntity("http://10.168.1.4:25000/data-access-service/notifications/1",List.class);
 
 		        notificationDto = responseEntity.getBody();
 

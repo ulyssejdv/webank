@@ -56,15 +56,15 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                           <td>Montant transaction</td>
-                           <td>Type de transaction</td>
+                           <th>Type de transaction</th>
+                           <th>Montant transaction</th>
                         </tr>
                         </thead>
                         <tbody>
 					<c:forEach var="n" items="${notification}">
                             <tr>
-                                <td>${n.amount}</td>
-                                <td>${n.transactionType}</td>
+                            	<td>${n.transactionType}</td>
+                                <td>${n.amount} €</td>
                             </tr>
                         </c:forEach>
                                 

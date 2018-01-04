@@ -38,7 +38,7 @@ public class AccountStatementService {
         fullUrl.append(this.path).append("/" + customerId).append("/customer/").append(customerId);
         log.info(fullUrl.toString());
         try {
-            pdf = WebHdfsServiceBuilder.run(fullUrl.toString());
+            pdf = WebHdfsServiceBuilder.sendHttpRequest(fullUrl.toString());
         } catch (IOException e) {
             log.info(e.getMessage());
         }
@@ -53,7 +53,7 @@ public class AccountStatementService {
                 append("/").append(customerId);
         log.info(fullUrl.toString());
         try {
-            pdf = WebHdfsServiceBuilder.run(fullUrl.toString());
+            pdf = WebHdfsServiceBuilder.sendHttpRequest(fullUrl.toString());
         } catch (IOException e) {
             log.info(e.getMessage());
         }

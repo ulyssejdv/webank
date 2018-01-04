@@ -1,7 +1,7 @@
 package baacstservice.controllers;
 
 import baacstservice.services.BasService;
-import baacstservice.services.PdfService;
+import baacstservice.services.PdfHdfsService;
 import fr.webank.webankmodels.BasDto;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class BasController {
     private BasService basService;
 
     @Autowired
-    private PdfService pdfService;
+    private PdfHdfsService pdfHdfsService;
 
     /**
      * Return the list of bank account statement metadata for the given customer
@@ -54,7 +54,7 @@ public class BasController {
      * Return the true physical bank account statement pdf
      */
     @GetMapping("/pdf/{basId}/customer/{customerId}")
-    public ResponseEntity<byte[]> getBasPdf(@PathVariable Long basId, @PathVariable Long customerId) {
+    public ResponseEntity<?> getBasPdf(@PathVariable Long basId, @PathVariable Long customerId) {
 
         final Optional<BasDto> dtoOpt = basService.getBas(basId);
 
@@ -63,7 +63,7 @@ public class BasController {
         byte[] contents = null;
 
         if (basDto != null) {
-            contents = pdfService.getPdf(basDto, customerId);
+            contents = pdfHdfsService.getPdf(basDto, customerId);
         }
 
         HttpHeaders headers = new HttpHeaders();
@@ -72,7 +72,9 @@ public class BasController {
         headers.setContentDispositionFormData(filename, filename);
         headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
 
-        ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(contents, headers, HttpStatus.OK);
-        return response;
+        if (contents == null) {
+            return new ResponseEntity<>("No PDF can be returned", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(contents, headers, HttpStatus.OK);
     }
 }

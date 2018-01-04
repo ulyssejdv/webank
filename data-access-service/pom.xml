@@ -11,6 +11,7 @@
 
     <artifactId>data-access-service</artifactId>
 
+
     <dependencies>
 
 
@@ -79,6 +80,9 @@
     </dependencies>
 
     <build>
+
+        <finalName>${project.artifactId}</finalName>
+
         <plugins>
             
             <!-- Required for spring-boot:run in a Spring Boot without parent project -->
@@ -97,6 +101,27 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <configuration>
+                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                    <dockerDirectory>docker/data-access-service</dockerDirectory>
+                    <buildArgs>
+                        <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+                    </buildArgs>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 

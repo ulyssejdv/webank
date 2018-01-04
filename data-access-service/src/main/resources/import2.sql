@@ -1,0 +1,2 @@
+﻿INSERT INTO customers(id,address, birthday, email, firstname, lastname, phonenumber) VALUES (1,'1 rue des frères reclus','10/12/1987','bernardlamich@gmail,com','martin','dupont','0611548595');
+INSERT INTO bank_statement (id, created_at, file_url, customer_id) VALUES (1, '2017-11-28 13:11:28.454000', 'bas_87654.pdf', 1);

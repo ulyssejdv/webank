@@ -5,9 +5,9 @@ services:
   # Postgresql Database
   #---------------------------------------------------------------
   db:
-    image: webank/postgresql
     build:
       context: ./data-access-service/docker/postgresql
+    image: webank/postgresql
     ports:
       - "25432:5432"
     networks:
@@ -19,11 +19,12 @@ services:
   # Service who communicate with the database
   #---------------------------------------------------------------
   data-access-service:
-    image: webank/data-access-service
     build:
-      context: ./data-access-service/docker/data-access-service
+      context: ./data-access-service
+      dockerfile: ./docker/data-access-service/Dockerfile
       args:
-        JAR_FILE: "data-access-service.jar"
+        JAR_FILE: "target/data-access-service.jar"
+    image: webank/data-access-service
     ports:
       - "25000:25000"
     depends_on:
@@ -37,17 +38,18 @@ services:
   # Service who communicate with the HDFS cluster
   #---------------------------------------------------------------
   webank-hdfs-service:
-    image: webank/webank-hdfs-service
     build:
-      context: ./webank-hdfs-service/docker
+      context: ./webank-hdfs-service
+      dockerfile: ./docker/Dockerfile
       args:
-        JAR_FILE: "webank-hdfs-service"
-      ports:
-        - "25100:25100"
-      depends_on:
-        - data-access-service
-      networks:
-        - webnet
+        JAR_FILE: "target/webank-hdfs-service.jar"
+    image: webank/webank-hdfs-service
+    ports:
+      - "25100:25100"
+    depends_on:
+      - data-access-service
+    networks:
+      - webnet
 
 
 networks:

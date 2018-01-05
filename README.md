@@ -108,3 +108,31 @@ References :
 
 - [https://www.digitalocean.com/community/tutorials/how-to-install-hadoop-in-stand-alone-mode-on-ubuntu-16-04](https://www.digitalocean.com/community/tutorials/how-to-install-hadoop-in-stand-alone-mode-on-ubuntu-16-04)
 - [https://docs.hortonworks.com/HDPDocuments/Ambari-2.6.0.0/bk_ambari-installation/content/set_up_the_ambari_server.html](https://docs.hortonworks.com/HDPDocuments/Ambari-2.6.0.0/bk_ambari-installation/content/set_up_the_ambari_server.html)
+
+
+## Docker stack 
+
+Before running all services in docker you have to build it
+
+`mvn clean package`
+
+Build all images 
+
+`docker-composer build`
+
+
+Up
+
+`docker stack deploy -c docker-compose.yml webanks`
+
+Down
+
+`docker stack rm webanks`
+
+Connexion to the dockerised database
+
+`psql -h localhost -p 25432 -d webank -U docker --password`
+
+Make a backup of the database (after exec, replace the id by the real container id)
+
+`docker exec d8dc5836d037 usr/lib/postgresql/9.3/bin/pg_dump webank > backup.sql`

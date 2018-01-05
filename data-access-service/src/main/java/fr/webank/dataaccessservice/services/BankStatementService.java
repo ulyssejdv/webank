@@ -21,17 +21,11 @@ import java.util.stream.Collectors;
 @Service
 public class BankStatementService implements BankStatementServiceInterface {
 
-
-
     @Autowired
     BankStatementRepository bankStatementRepository;
 
-
-
     @Autowired
     CustomerRepository customerRepository;
-
-
 
     @Override
     public List<BankStatementDto> getBankStatementByCustomer(Long customerId) throws ObjectNotExistsException {

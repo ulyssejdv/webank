@@ -54,8 +54,11 @@ public class BankStatementHdfsService {
                 hdfsUrlparams
         );
 
+        WebHdfsServiceBuilder webHdfsServiceBuilder = new WebHdfsServiceBuilder(hdfsUrl.buildStringUrl());
+
+
         try {
-            pdf = WebHdfsServiceBuilder.sendHttpRequest(hdfsUrl.buildStringUrl());
+            pdf = webHdfsServiceBuilder.sendHttpRequest();
         } catch (ServerErrorException | ClientErrorException e) {
             log.error(e.getMessage());
             throw new PdfNotFoundException(e.getMessage());

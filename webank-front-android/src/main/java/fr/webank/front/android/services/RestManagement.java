@@ -1,4 +1,4 @@
-package statementmanager;
+package fr.webank.front.android.services;
 
 import fr.webank.webankmodels.AccountDto;
 import fr.webank.webankmodels.TransactionDto;

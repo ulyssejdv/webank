@@ -12,15 +12,15 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
+import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * Created by ulysse on 06/12/2017.
@@ -40,9 +40,9 @@ public class BankStatementControllerTest {
 
 
     @Test
-    public void testShouldReturnBasDtoObject() throws Exception {
+    public void getBankStatementByIdShouldReturnBasDtoObject() throws Exception {
 
-        String route = "/bas/{basId}";
+        String route = "/bank-statement/{basId}";
 
         Optional<BankStatementDto> basDto = Optional.of(
                 BankStatementDto.builder()
@@ -52,7 +52,7 @@ public class BankStatementControllerTest {
                         .build()
         );
 
-        given(this.bankStatementService.getBasById(new Long(1)))
+        given(this.bankStatementService.getBankStatementById(new Long(1)))
                 .willReturn(basDto);
 
         this.mvc.perform(
@@ -66,8 +66,8 @@ public class BankStatementControllerTest {
 
 
     @Test
-    public void testShouldReturnAListOfBasDto() throws Exception {
-        String route = "/bas/customer/{customerId}";
+    public void getBankStatementByCustomerShouldReturnAListOfBasDto() throws Exception {
+        String route = "/bank-statement/customer/{customerId}";
 
         Optional<BankStatementDto> basDto = Optional.of(
                 BankStatementDto.builder()
@@ -93,7 +93,7 @@ public class BankStatementControllerTest {
                 .build());
 
 
-        given(this.bankStatementService.getBasByCustomer(new Long(1)))
+        given(this.bankStatementService.getBankStatementByCustomer(new Long(1)))
                 .willReturn(bankStatementDtoList);
 
         this.mvc.perform(
@@ -106,13 +106,12 @@ public class BankStatementControllerTest {
     }
 
     @Test
-    public void testShouldReturnNothingAndNoContentHttpCode() throws Exception {
-        String route = "/bas/customer/{customerId}";
-
+    public void getBankStatementByCustomerShouldReturnNothingAndNoContentHttpCode() throws Exception {
+        String route = "/bank-statement/customer/{customerId}";
 
         List<BankStatementDto> bankStatementDtoList = new ArrayList<>();
 
-        given(this.bankStatementService.getBasByCustomer(new Long(1)))
+        given(this.bankStatementService.getBankStatementByCustomer(new Long(1)))
                 .willReturn(bankStatementDtoList);
 
         this.mvc.perform(

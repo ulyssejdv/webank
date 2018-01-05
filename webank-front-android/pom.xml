@@ -11,7 +11,7 @@
     </parent>
 
     <groupId>fr.webank</groupId>
-    <artifactId>front-android</artifactId>
+    <artifactId>webank-front-android</artifactId>
     <version>1.0.0</version>
 
     <properties>

@@ -43,7 +43,7 @@
         <module>webank-webapp</module>
         <module>webank-http-client</module>
         <module>webank-hdfs-service</module>
-        <module>webank-automated-testing</module>
+        <!-- <module>webank-automated-testing</module> -->
         <module>webank-front-android</module>
     </modules>
 

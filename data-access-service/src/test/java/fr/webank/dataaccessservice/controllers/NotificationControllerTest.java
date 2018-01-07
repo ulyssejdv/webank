@@ -3,6 +3,8 @@ package fr.webank.dataaccessservice.controllers;
 
 import fr.webank.dataaccessservice.services.NotificationService;
 import fr.webank.webankmodels.NotificationDTO;
+import fr.webank.webankmodels.StockPriceDto;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,6 +21,7 @@ import java.util.List;
 
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 /**
@@ -62,6 +65,17 @@ public class NotificationControllerTest {
 
         Assert.assertTrue(testOk);
     }
+    
+    @Test
+    public void shouldReturnNotificationNotFound() {
+        when(notificationServiceMock.getClientNotifications(anyLong()))
+                .thenReturn(null);
 
+        ResponseEntity<List<NotificationDTO>> response = notificationControllerInjectMock.getClientNotifications(anyLong());
+
+        boolean testOk = response.getStatusCode() == HttpStatus.NOT_FOUND;
+
+        Assert.assertTrue(testOk);
+    }
 
 }

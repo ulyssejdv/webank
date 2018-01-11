@@ -39,7 +39,7 @@
         </dependency>
         <dependency>
             <groupId>fr.webank</groupId>
-            <artifactId>webank-retrofit</artifactId>
+            <artifactId>webank-http-client</artifactId>
             <version>1.0.0</version>
         </dependency>
     </dependencies>

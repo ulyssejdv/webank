@@ -123,11 +123,12 @@ Build all images
 
 Up
 
-`docker stack deploy -c docker-compose.yml webanks`
+`docker stack deploy -c docker-compose.yml webank-stack`
+
 
 Down
 
-`docker stack rm webanks`
+`docker stack rm webank-stack`
 
 Connexion to the dockerised database
 
@@ -136,3 +137,8 @@ Connexion to the dockerised database
 Make a backup of the database (after exec, replace the id by the real container id)
 
 `docker exec d8dc5836d037 usr/lib/postgresql/9.3/bin/pg_dump webank > backup.sql`
+
+Re-import backup into the docker postres instance
+
+`psql -h localhost -p 25432 -d webank -U docker --password < backup.sql`
+

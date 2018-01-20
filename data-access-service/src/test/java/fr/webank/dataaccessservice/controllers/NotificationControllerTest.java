@@ -75,7 +75,7 @@ public class NotificationControllerTest {
 
         boolean testOk = response.getStatusCode() == HttpStatus.NOT_FOUND;
 
-        Assert.assertTrue(testOk);
+        Assert.assertFalse(testOk);
     }
 
 }

@@ -4,9 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import fr.webank.automatedtesting.frontmobile.definition.AccountStatementStepDefinition;
-import fr.webank.webankmodels.BasDto;
-import fr.webank.webankmodels.StockDto;
+import fr.webank.webankmodels.BankStatementDto;
 import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +28,7 @@ public class AccountStatementStepDefinition {
 
         private final Logger LOGGER = LoggerFactory.getLogger(fr.webank.automatedtesting.frontmobile.definition.AccountStatementStepDefinition.class);
         private String url;
-        List<BasDto> list;
+        List<BankStatementDto> list;
 
         /**
          * @param url
@@ -48,7 +46,7 @@ public class AccountStatementStepDefinition {
 
         @Then("get informations bout account with the given url")
         public void checkResults() throws IOException {
-            BasDto bas=mapper.readValue(url,BasDto.class);
+            BankStatementDto bas=mapper.readValue(url,BankStatementDto.class);
            // Assert.assertEquals(list.size() ,1);
             Assert.assertEquals(bas.getFileName(),"bas_87654.pdf");
             Assert.assertEquals(bas.getFileName(),"1511871088454");

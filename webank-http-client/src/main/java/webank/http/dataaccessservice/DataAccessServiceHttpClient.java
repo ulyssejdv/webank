@@ -1,6 +1,6 @@
 package webank.http.dataaccessservice;
 
-import fr.webank.webankmodels.BasDto;
+import fr.webank.webankmodels.BankStatementDto;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -13,8 +13,8 @@ import java.util.List;
 public interface DataAccessServiceHttpClient {
 
     @GET("data-access-service/bas/{id}")
-    Call<BasDto> basObject(@Path("id") Long id);
+    Call<BankStatementDto> basObject(@Path("id") Long id);
 
     @GET("data-access-service/bas/customer/{id}")
-    Call<List<BasDto>> basCustomerList(@Path("id") Long id);
+    Call<List<BankStatementDto>> basCustomerList(@Path("id") Long id);
 }

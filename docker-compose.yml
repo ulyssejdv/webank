@@ -1,21 +1,6 @@
 version: "3"
 services:
 
-  #---------------------------------------------------------------
-  # Postgresql Database
-  #---------------------------------------------------------------
-  db:
-    build:
-      context: ./data-access-service/docker/postgresql
-    image: webank/postgresql
-    ports:
-      - "25432:5432"
-    volumes:
-      - "/Users/ulysse/IdeaProjects/backend-webank/pgdata3:/tmp/pgdata"
-    networks:
-      - webnet
-
-
 
   #---------------------------------------------------------------
   # Service who communicate with the database
@@ -29,12 +14,26 @@ services:
     image: webank/data-access-service
     ports:
       - "25000:25000"
-    depends_on:
-      - db
     networks:
       - webnet
 
 
+    #---------------------------------------------------------------
+    # Service who communicate with the android devices
+    #---------------------------------------------------------------
+  webank-front-android:
+    build:
+      context: ./webank-front-android
+      dockerfile: ./docker/Dockerfile
+      args:
+        JAR_FILE: "target/webank-front-android.jar"
+    image: webank/webank-front-android
+    ports:
+      - "8080:8080"
+    depends_on:
+      - data-access-service
+    networks:
+      - webnet
 
   #---------------------------------------------------------------
   # Service who communicate with the HDFS cluster
@@ -52,7 +51,6 @@ services:
       - data-access-service
     networks:
       - webnet
-
 
 networks:
   webnet:

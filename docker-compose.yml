@@ -11,7 +11,7 @@ services:
     ports:
       - "25432:5432"
     volumes:
-      - "/Users/ulysse/IdeaProjects/backend-webank/pgdata3:/tmp/pgdata"
+      - "/Users/ulysse/IdeaProjects/backend-webank/pgdata4:/tmp/pgdata"
     networks:
       - webnet
 

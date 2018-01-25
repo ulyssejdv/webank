@@ -2,11 +2,7 @@ package fr.webank.front.android.services;
 
 import fr.webank.webankmodels.AccountDto;
 import fr.webank.webankmodels.TransactionDto;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestTemplate;
-
-import javax.annotation.PostConstruct;
 
 
 /**
@@ -34,7 +30,7 @@ public class RestManagement {
 
 
 
-    public static final String REST_SERVICE_URI = "http://10.168.1.4:25000/data-access-service";
+    public static final String REST_SERVICE_URI = "http://data-access-service:25000/data-access-service";
    // public static final String REST_SERVICE_URI = url+port+path;
 
     public static AccountDto[] getResponse(String endPath,

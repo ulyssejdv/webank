@@ -29,12 +29,26 @@ services:
     image: webank/data-access-service
     ports:
       - "25000:25000"
-    depends_on:
-      - db
     networks:
       - webnet
 
 
+    #---------------------------------------------------------------
+    # Service who communicate with the android devices
+    #---------------------------------------------------------------
+  webank-front-android:
+    build:
+      context: ./webank-front-android
+      dockerfile: ./docker/Dockerfile
+      args:
+        JAR_FILE: "target/webank-front-android.jar"
+    image: webank/webank-front-android
+    ports:
+      - "8080:8080"
+    depends_on:
+      - data-access-service
+    networks:
+      - webnet
 
   #---------------------------------------------------------------
   # Service who communicate with the HDFS cluster
@@ -52,7 +66,6 @@ services:
       - data-access-service
     networks:
       - webnet
-
 
 networks:
   webnet:

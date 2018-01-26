@@ -1,0 +1,25 @@
+version: "3"
+services:
+  db:
+    image: webank/postgresql
+    build:
+      context: ./docker/postgresql
+    ports:
+      - "25432:5432"
+    networks:
+      - webnet
+  web:
+    image: webank/data-access-service
+    build:
+      context: ./docker/data-access-service
+      args:
+        JAR_FILE: "data-access-service.jar"
+    ports:
+      - "25000:25000"
+    depends_on:
+      - db
+    networks:
+      - webnet
+networks:
+  webnet:
+

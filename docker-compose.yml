@@ -29,8 +29,11 @@ services:
     image: webank/data-access-service
     ports:
       - "25000:25000"
+    depends_on:
+      - db
     networks:
       - webnet
+
 
 
     #---------------------------------------------------------------

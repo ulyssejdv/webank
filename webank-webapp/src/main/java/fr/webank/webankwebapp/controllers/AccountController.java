@@ -18,7 +18,7 @@ public class AccountController {
 			  
 		        ModelAndView mav = new ModelAndView("Notifier/accountById");
 		        RestTemplate restTemplate = new RestTemplate();
-		        String url = "http://10.168.1.4:25000/data-access-service/account/1";
+		        String url = "http://data-access-service:25000/data-access-service/account/1";
 		        AccountDto accountDto = restTemplate.getForObject(url, AccountDto.class); 
 		        mav.addObject("account", accountDto);
 		        
@@ -31,7 +31,7 @@ public class AccountController {
 			  
 		        ModelAndView mav = new ModelAndView("Notifier/PersonalAccountHomePage");
 		        RestTemplate restTemplate = new RestTemplate();
-		        String url = "http://10.168.1.4:25000/data-access-service/account/1";
+		        String url = "http://data-access-service:25000/data-access-service/account/1";
 		        AccountDto accountDto = restTemplate.getForObject(url, AccountDto.class); 
 		        mav.addObject("account", accountDto);
 		        
@@ -44,7 +44,7 @@ public class AccountController {
 			  
 		        ModelAndView mav = new ModelAndView("Notifier/PersonalAccount");
 		        RestTemplate restTemplate = new RestTemplate();
-		        String url = "http://10.168.1.4:25000/data-access-service/account/1";
+		        String url = "http://data-access-service:25000/data-access-service/account/1";
 		        AccountDto accountDto = restTemplate.getForObject(url, AccountDto.class); 
 		        mav.addObject("account", accountDto);
 		        

@@ -6,7 +6,8 @@
     <version>1.0.0</version>
   </parent>
   <artifactId>webank-webapp</artifactId>
-  
+
+  <packaging>war</packaging>
   
   <dependencies>
   
@@ -63,6 +64,7 @@
   </dependencies>
   
     <build>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

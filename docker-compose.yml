@@ -47,7 +47,7 @@ services:
         JAR_FILE: "target/webank-front-android.jar"
     image: webank/webank-front-android
     ports:
-      - "8080:8080"
+      - "9090:9090"
     depends_on:
       - data-access-service
     networks:
@@ -65,6 +65,23 @@ services:
     image: webank/webank-hdfs-service
     ports:
       - "25100:25100"
+    depends_on:
+      - data-access-service
+    networks:
+      - webnet
+
+  #---------------------------------------------------------------
+  # Web App
+  #---------------------------------------------------------------
+  webank-webapp:
+    build:
+      context: ./webank-webapp
+      dockerfile: ./docker/Dockerfile
+      args:
+        JAR_FILE: "target/webank-webapp.war"
+    image: webank/webank-webapp
+    ports:
+      - "8080:8080"
     depends_on:
       - data-access-service
     networks:

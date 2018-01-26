@@ -123,6 +123,10 @@ Before running all services in docker you have to build it
 
 `mvn clean package`
 
+Pour les machines sans maven :
+
+`docker run -it --rm --name my-maven-project -v "$PWD":/usr/src/mymaven -w /usr/src/mymaven maven:3.2-jdk-8 mvn clean package`
+
 Build all images 
 
 `docker-composer build`

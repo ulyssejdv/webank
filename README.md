@@ -112,6 +112,13 @@ References :
 
 ## Docker stack 
 
+Mettre le contenu du répertoire pgdata3 dans `/webank/pgsql` sur chaque host docker
+
+*__Attention__*
+
+*Les droits sur tous les fichiers postgres doivent être en 700 (u+rwx)*
+
+
 Before running all services in docker you have to build it
 
 `mvn clean package`

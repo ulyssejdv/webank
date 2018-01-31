@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -37,9 +38,47 @@
                     <a href="/webank/account/id/accueilClient" role="button" aria-haspopup="true" aria-expanded="false">Acceuil<span class="caret"></span></a>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mes notifications<span class="caret"></span></a>
+                    <a href="/webank/account/id/Notif#myModal" role="button" aria-haspopup="true" aria-expanded="false" type="submit" data-toggle="modal"> Mes notifications    ( ${fn:length(notification)} ) <span class="caret"></span></a>
                 </li>
             </ul>
+                <!-- Modal -->
+                <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade" style="display: none;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                <h4 class="modal-title">Voici vos notifications</h4>
+                            </div>
+                            <div class="modal-body">
+
+
+              <div class="jumbotron">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                           <th>Type de transaction</th>
+                           <th>Montant transaction</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+					<c:forEach var="n" items="${notification}">
+                            <tr>
+                            	<td>${n.transactionType}</td>
+                                <td>${n.amount} €</td>
+                            </tr>
+                        </c:forEach>
+                                
+                        </tbody>
+                    </table>
+                </div>
+
+
+							</div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+</div>
+            
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>

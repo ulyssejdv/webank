@@ -19,7 +19,7 @@ Message = ": " + Jour + "/" + Mois + "/" + Annee;
                 <h1>Bonjour ${account.customer.getFirstname()},</h1>
             </div>
             
-      <p>Voici votre solde.</p>
+      <p>Voici votre solde.</p> 
 
                 <div class="jumbotron">
                     <table class="table table-striped">

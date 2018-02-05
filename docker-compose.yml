@@ -7,15 +7,13 @@ services:
   db:
     build:
       context: ./data-access-service/docker/postgresql
-    image: webank/postgresql
+    image: ulyssejdv/postgresql
     ports:
       - "25432:5432"
     volumes:
-      - "/webank/pgsql:/tmp/pgdata"
+      - "/webank/main:/var/lib/postgresql/9.3/main"
     networks:
       - webnet
-
-
 
   #---------------------------------------------------------------
   # Service who communicate with the database
@@ -26,7 +24,7 @@ services:
       dockerfile: ./docker/data-access-service/Dockerfile
       args:
         JAR_FILE: "target/data-access-service.jar"
-    image: webank/data-access-service
+    image: ulyssejdv/data-access-service
     ports:
       - "25000:25000"
     depends_on:
@@ -34,18 +32,16 @@ services:
     networks:
       - webnet
 
-
-
-    #---------------------------------------------------------------
-    # Service who communicate with the android devices
-    #---------------------------------------------------------------
+  #---------------------------------------------------------------
+  # Service who communicate with the android devices
+  #---------------------------------------------------------------
   webank-front-android:
     build:
       context: ./webank-front-android
       dockerfile: ./docker/Dockerfile
       args:
         JAR_FILE: "target/webank-front-android.jar"
-    image: webank/webank-front-android
+    image: ulyssejdv/webank-front-android
     ports:
       - "9090:9090"
     depends_on:
@@ -62,24 +58,22 @@ services:
       dockerfile: ./docker/Dockerfile
       args:
         JAR_FILE: "target/webank-hdfs-service.jar"
-    image: webank/webank-hdfs-service
+    image: ulyssejdv/webank-hdfs-service
     ports:
       - "25100:25100"
-    depends_on:
-      - data-access-service
     networks:
       - webnet
 
   #---------------------------------------------------------------
   # Web App
   #---------------------------------------------------------------
-  webank-webapp:
+  webapp:
     build:
       context: ./webank-webapp
       dockerfile: ./docker/Dockerfile
       args:
         JAR_FILE: "target/webank-webapp.war"
-    image: webank/webank-webapp
+    image: ulyssejdv/webank-webapp
     ports:
       - "8080:8080"
     depends_on:
@@ -89,4 +83,7 @@ services:
 
 networks:
   webnet:
+
+volumes:
+  db_data:
 

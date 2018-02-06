@@ -31,7 +31,7 @@ public class stocksServiceTest {
     private StockService stockServiceInjectMock;
 
     @Mock
-    private StockRepository stockRepositoryMock;
+    private StockRepository StockRepositoryMock;
 
     private Page<Stock> pageStocks;
 
@@ -52,7 +52,7 @@ public class stocksServiceTest {
         Pageable pageable = new PageRequest(0, 10);
 
         //Mock the entityManager.createQuery method: every time we call this method we will return query
-        when(stockRepositoryMock.findAll(pageable))
+        when(StockRepositoryMock.findAll(pageable))
                 .thenReturn(pageStocks);
 
 

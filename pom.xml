@@ -42,6 +42,7 @@
         <module>mobile-front</module>
         <module>webank-automated-testing</module>
         <module>front-android</module>
+        <module>load-balancing-soa</module>
     </modules>
 
     <dependencyManagement>

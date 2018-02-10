@@ -17,8 +17,9 @@
             <div class="jumbotron">
                 <h3>Historique des soldes</h3>
                 <div id="char-historique-solde"></div>
-
-                <h3>Prediction des soldes</h3>
+                <br>
+                <br>
+                <h3>Prédiction des soldes</h3>
 
                 <div>
                     <table class="table table-hover">
@@ -38,6 +39,9 @@
                         </tbody>
                     </table>
                 </div>
+                <br>
+                <br>
+                <h3>Représenation graphique des prédictions</h3>
                 <div id="char-prediction-solde"></div>
             </div>
         </div>

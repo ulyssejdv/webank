@@ -15,6 +15,12 @@ prediction <- predict(ad.data, new_data)
 
 ypred = (predict(ad.data, new_data)>0.5)*1
 
+if (ypred==1) {
+	cat ("Le client va quitter la banque")
+} else {
+	cat ("Le client va rester")
+}
+
 View(ypred)
 
 

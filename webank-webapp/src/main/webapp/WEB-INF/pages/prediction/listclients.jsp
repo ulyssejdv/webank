@@ -18,7 +18,7 @@
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <th>Nom</th>
+                        <th>Nom et Prénom</th>
                         <th>Nombre d'enfant</th>
                         <th>Situation</th>
                         <th>Solde</th>

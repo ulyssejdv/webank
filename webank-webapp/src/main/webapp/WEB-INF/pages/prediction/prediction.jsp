@@ -19,7 +19,7 @@
                 <div id="char-historique-solde"></div>
                 <br>
                 <br>
-                <h3>Prédiction des soldes</h3>
+                <h3>Prédiction des soldes (€)</h3>
 
                 <div>
                     <table class="table table-hover">

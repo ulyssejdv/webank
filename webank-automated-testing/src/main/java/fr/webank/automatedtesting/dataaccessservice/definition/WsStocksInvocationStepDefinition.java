@@ -14,6 +14,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Ayda Najjar.
@@ -25,7 +26,9 @@ import java.util.List;
 public class WsStocksInvocationStepDefinition {
     private static final Logger LOGGER = LoggerFactory.getLogger(WsStocksInvocationStepDefinition.class);
     private String url;
-    private List<StockDto> listStok;
+    private String stockId;
+    private StockDto stock;
+    private StockDto[] listStok;
     /**
      * @param url
      */
@@ -37,11 +40,53 @@ public class WsStocksInvocationStepDefinition {
     @When("request the list of stocks")
     public void requestListStocksServer() {
         RestTemplate restTemplate = new RestTemplate();
-        listStok = restTemplate.getForObject(url, List.class );
+        listStok = restTemplate.getForObject(url, StockDto[].class );
     }
 
     @Then("checks the results")
     public void checkResults() {
-        Assert.assertTrue(listStok.size() == 10);
+        Assert.assertTrue(listStok.length <= 10);
     }
+
+    @Given("the stoks filtred list rest frontend service at \"(.+?)\"")
+    public void setFilteredWsStocksUrl(final String url) {
+        this.url = url;
+    }
+
+    @Then("checks the filtered results")
+    public void checkFilteredResults() {
+        Boolean ok = true;
+
+        for (StockDto stock:
+             listStok) {
+            if(!stock.getStockId().toUpperCase().contains("AA") && !stock.getStockDescription().toUpperCase().contains("AA"))
+            {
+                ok = false;
+                break;
+            }
+        }
+
+        Assert.assertTrue(ok);
+    }
+
+    @Then("choose stock id from results")
+    public void chooseStockId() {
+        Random random = new Random();
+        int randomIndex = random.nextInt(listStok.length + 1);
+
+        stockId = listStok[randomIndex].getStockId();
+    }
+
+    @Then("request the stock details")
+    public void requestStockDetails() {
+        RestTemplate restTemplate = new RestTemplate();
+        stock = restTemplate.getForObject(url + "/" + stockId, StockDto.class );
+    }
+
+    @Then("checks the stock details")
+    public void checkStockDetails() {
+        Assert.assertTrue(stock.getStockId().equals(stockId));
+    }
+
+
 }

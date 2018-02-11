@@ -10,4 +10,5 @@ import java.util.List;
 
 public interface INotificationRepository {
     List<Notification> getCustomerNotifications(long idCustomer);
+    Boolean markCustomerNotificationsAsRead(long idCustomer);
 }

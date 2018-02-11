@@ -80,4 +80,8 @@ public class NotificationService {
         return notificationDTOList;
     }
 
+    public Boolean markCustomerNotificationsAsRead(long idCustomer) {
+        return notificationRepository.markCustomerNotificationsAsRead(idCustomer);
+    }
+
 }

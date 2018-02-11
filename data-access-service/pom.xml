@@ -11,6 +11,7 @@
 
     <artifactId>data-access-service</artifactId>
 
+
     <dependencies>
 
 
@@ -83,8 +84,8 @@
     </dependencies>
 
     <build>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
-            
             <!-- Required for spring-boot:run in a Spring Boot without parent project -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -103,7 +104,4 @@
             </plugin>
         </plugins>
     </build>
-
-
-
 </project>

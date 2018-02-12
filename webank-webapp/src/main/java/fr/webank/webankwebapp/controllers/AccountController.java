@@ -48,7 +48,7 @@ public class AccountController {
 		        List<NotificationDTO> notificationDto = new ArrayList<NotificationDTO>();
 		        
 		        RestTemplate restTemplate2 = new RestTemplate();
-		        ResponseEntity<List> responseEntity = restTemplate2.getForEntity("http://localhost:25000/data-access-service/notifications/1",List.class);
+		        ResponseEntity<List> responseEntity = restTemplate2.getForEntity("http://data-access-service:25000/data-access-service/notifications/1",List.class);
 
 		        notificationDto = responseEntity.getBody();
 

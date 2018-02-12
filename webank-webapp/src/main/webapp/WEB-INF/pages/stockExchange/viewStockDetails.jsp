@@ -20,9 +20,7 @@
                     <thead>
                     <tr>
                         <th>Titre</th>
-                        <th>Code titre</th>
                         <th>Cours (€)</th>
-                        <th>Variation</th>
                         <th>Valeur à l'ouverture</th>
                         <th>Valeur la plus haute</th>
                         <th>Valeur la plus basse</th>
@@ -30,16 +28,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>${stockDetails.stockId}</td>
-                            <td>${stockDetails.stockDescription}</td>
-                            <td>${stockDetails.stockPrice}</td>
-                            <td>${stockDetails.stockPriceChange}</td>
-                            <td>${stockDetails.stockOpenPrice}</td>
-                            <td>${stockDetails.stockMaxPrice}</td>
-                            <td>${stockDetails.stockMinPrice}</td>
-                            <td>${stockDetails.stockExchange}</td>
-                        </tr>
+                    <tr>
+                        <td>${stockDetails.stockId}</td>
+                        <td>${stockDetails.stockPrice}</td>
+                        <td>${stockDetails.stockOpenPrice}</td>
+                        <td>${stockDetails.stockMaxPrice}</td>
+                        <td>${stockDetails.stockMinPrice}</td>
+                        <td>${stockDetails.stockExchange}</td>
+                    </tr>
                     </tbody>
                 </table>
             </div>

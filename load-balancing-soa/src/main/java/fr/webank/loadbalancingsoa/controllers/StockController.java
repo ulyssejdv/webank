@@ -29,6 +29,22 @@ public class StockController {
 
     public static String defaultServer = "";
 
+    public String getServer1() {
+        return server1;
+    }
+
+    public void setServer1(String server1) {
+        this.server1 = server1;
+    }
+
+    public String getServer2() {
+        return server2;
+    }
+
+    public void setServer2(String server2) {
+        this.server2 = server2;
+    }
+
     public StockController() {
         defaultServer = server1;
         System.out.print("server1: " + server1);

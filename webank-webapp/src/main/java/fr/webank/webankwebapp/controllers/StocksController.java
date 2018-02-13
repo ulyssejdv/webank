@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,18 +21,39 @@ import java.util.List;
 @RequestMapping("/stockExchange")
 public class StocksController {
 
-    @GetMapping
-    public ModelAndView getStocks() {
+    @RequestMapping(value="/search")
+    public ModelAndView getStocksSearching(@RequestParam("val") String val){
         ModelAndView modelAndView = new ModelAndView("stockExchange/viewStocks");
 
         List<StockDto> stockDtoList = new ArrayList<StockDto>();
 
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<List> responseEntity = restTemplate.getForEntity("http://data-access-service:25000//data-access-service/stocks?page=0&size=38",List.class);
+        ResponseEntity<List> responseEntity = restTemplate.getForEntity("http://data-access-service:25000//data-access-service/stocks?search=" + val,List.class);
 
         stockDtoList = responseEntity.getBody();
 
         modelAndView.addObject("listStock", stockDtoList);
+
+        return modelAndView;
+    }
+
+    @GetMapping
+    public ModelAndView getStocks(@RequestParam(value="page", required=false) Integer page) {
+
+        if ((page == null) || (page == 0))
+            page=1;
+
+        ModelAndView modelAndView = new ModelAndView("stockExchange/viewStocks");
+
+        List<StockDto> stockDtoList = new ArrayList<StockDto>();
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<List> responseEntity = restTemplate.getForEntity("http://data-access-service:25000//data-access-service/stocks?page=" + (page-1) + "&size=15",List.class);
+
+        stockDtoList = responseEntity.getBody();
+
+        modelAndView.addObject("listStock", stockDtoList);
+        modelAndView.addObject("numpage", page);
 
         return modelAndView;
     }
@@ -51,4 +73,5 @@ public class StocksController {
 
         return modelAndView;
     }
+
 }

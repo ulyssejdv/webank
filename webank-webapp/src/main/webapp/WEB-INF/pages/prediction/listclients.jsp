@@ -20,8 +20,8 @@
                     <tr>
                         <th>Nom et Prénom</th>
                         <th>Nombre d'enfant</th>
-                        <th>Situation</th>
-                        <th>Solde</th>
+                        <th>Catégorie socio professionnelle</th>
+                        <th>Solde (€)</th>
                         <th>Prédiction</th>
                     </tr>
                     </thead>

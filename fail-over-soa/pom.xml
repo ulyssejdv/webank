@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>load-balancing-soa</artifactId>
+    <artifactId>fail-over-soa</artifactId>
 
     <dependencies>
 

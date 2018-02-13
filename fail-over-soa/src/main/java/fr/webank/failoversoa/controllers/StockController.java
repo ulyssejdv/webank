@@ -1,4 +1,4 @@
-package fr.webank.loadbalancingsoa.controllers;
+package fr.webank.failoversoa.controllers;
 
 
 import fr.webank.webankmodels.StockDto;

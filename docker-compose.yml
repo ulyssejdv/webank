@@ -10,8 +10,6 @@ services:
     image: ulyssejdv/postgresql
     ports:
       - "25432:5432"
-    volumes:
-      - "/webank/main:/var/lib/postgresql/9.3/main"
     networks:
       - webnet
 
@@ -24,11 +22,47 @@ services:
       dockerfile: ./docker/data-access-service/Dockerfile
       args:
         JAR_FILE: "target/data-access-service.jar"
+        SERVER_PORT: "25010"
     image: ulyssejdv/data-access-service
     ports:
       - "25000:25000"
     depends_on:
       - db
+    networks:
+      - webnet
+
+  #---------------------------------------------------------------
+  # Service who communicate with the database second instance
+  #---------------------------------------------------------------
+  data-access-service-2:
+    build:
+      context: ./data-access-service
+      dockerfile: ./docker/data-access-service-2/Dockerfile
+      args:
+        JAR_FILE: "target/data-access-service.jar"
+    image: ulyssejdv/data-access-service-2
+    ports:
+      - "25010:25010"
+    depends_on:
+      - db
+    networks:
+      - webnet
+
+  #---------------------------------------------------------------
+  # load-balancing-soa
+  #---------------------------------------------------------------
+  load-balancing-soa:
+    build:
+      context: ./load-balancing-soa
+      dockerfile: ./docker/load-balancing-soa/Dockerfile
+      args:
+        JAR_FILE: "target/load-balancing-soa.jar"
+    image: ulyssejdv/load-balancing-soa
+    ports:
+      - "25030:25030"
+    depends_on:
+      - data-access-service
+      - data-access-service-2
     networks:
       - webnet
 
@@ -78,6 +112,7 @@ services:
       - "8080:8080"
     depends_on:
       - data-access-service
+      - load-balancing-soa
     networks:
       - webnet
 

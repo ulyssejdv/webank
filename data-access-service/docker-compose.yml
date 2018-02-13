@@ -20,6 +20,18 @@ services:
       - db
     networks:
       - webnet
+  web:
+      image: webank/data-access-service-2
+      build:
+        context: ./docker/data-access-service
+        args:
+          JAR_FILE: "data-access-service.jar"
+      ports:
+        - "25010:25000"
+      depends_on:
+        - db
+      networks:
+        - webnet
 networks:
   webnet:
 

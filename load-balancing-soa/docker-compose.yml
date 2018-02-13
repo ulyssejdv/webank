@@ -1,0 +1,17 @@
+version: "3"
+services:
+  web:
+      image: webank/load-balancing-soa
+      build:
+        context: ./docker/load-balancing-soa
+        args:
+          JAR_FILE: "load-balancing-soa.jar"
+      ports:
+        - "25030:25030"
+      depends_on:
+        - db
+      networks:
+        - webnet
+networks:
+  webnet:
+

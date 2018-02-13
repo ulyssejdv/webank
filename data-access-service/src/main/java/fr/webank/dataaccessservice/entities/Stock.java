@@ -33,7 +33,7 @@ public class Stock {
 
     public void setStockId(String stockId) { this.stockId = stockId; }
 
-    @Column(name = "stockdescription", length = 50)
+    @Column(name = "stockdescription", length = 200)
     public String getStockDescription() { return stockDescription; }
 
     public void setStockDescription(String stockDescription) { this.stockDescription = stockDescription; }

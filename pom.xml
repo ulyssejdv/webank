@@ -45,7 +45,7 @@
         <module>webank-hdfs-service</module>
         <!-- <module>webank-automated-testing</module> -->
         <module>webank-front-android</module>
-        <module>load-balancing-soa</module>
+        <module>fail-over-soa</module>
     </modules>
 
     <dependencyManagement>

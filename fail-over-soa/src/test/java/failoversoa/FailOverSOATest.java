@@ -1,10 +1,9 @@
-package fr.webank.loadbalancingsoa;
+package fr.webank.failoversoa;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
-import fr.webank.loadbalancingsoa.controllers.StockController;
+import fr.webank.failoversoa.controllers.StockController;
 import fr.webank.webankmodels.StockDto;
 import fr.webank.webankmodels.StockPriceDto;
 import org.junit.After;
@@ -15,7 +14,6 @@ import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -34,7 +32,7 @@ import static org.assertj.core.api.BDDAssertions.then;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = App.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class LoadBalancingSOATest {
+public class FailOverSOATest {
 
     ConfigurableApplicationContext application1;
     ConfigurableApplicationContext application2;

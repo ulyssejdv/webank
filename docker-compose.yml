@@ -41,7 +41,7 @@ services:
       dockerfile: ./docker/data-access-service-2/Dockerfile
       args:
         JAR_FILE: "target/data-access-service.jar"
-    image: ulyssejdv/data-access-service-2
+    image: aydan/data-access-service-2
     ports:
       - "25010:25010"
     depends_on:
@@ -50,15 +50,15 @@ services:
       - webnet
 
   #---------------------------------------------------------------
-  # load-balancing-soa
+  # fail-over-soa
   #---------------------------------------------------------------
-  load-balancing-soa:
+  fail-over-soa:
     build:
-      context: ./load-balancing-soa
-      dockerfile: ./docker/load-balancing-soa/Dockerfile
+      context: ./fail-over-soa
+      dockerfile: ./docker/fail-over-soa/Dockerfile
       args:
-        JAR_FILE: "target/load-balancing-soa.jar"
-    image: ulyssejdv/load-balancing-soa
+        JAR_FILE: "target/fail-over-soa.jar"
+    image: aydan/fail-over-soa
     ports:
       - "25030:25030"
     depends_on:
@@ -113,7 +113,7 @@ services:
       - "8080:8080"
     depends_on:
       - data-access-service
-      - load-balancing-soa
+      - fail-over-soa
     networks:
       - webnet
 

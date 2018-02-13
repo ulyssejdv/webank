@@ -10,6 +10,8 @@ services:
     image: ulyssejdv/postgresql
     ports:
       - "25432:5432"
+    volumes:
+      - "/webank/main:/var/lib/postgresql/9.3/main"
     networks:
       - webnet
 
@@ -22,7 +24,6 @@ services:
       dockerfile: ./docker/data-access-service/Dockerfile
       args:
         JAR_FILE: "target/data-access-service.jar"
-        SERVER_PORT: "25010"
     image: ulyssejdv/data-access-service
     ports:
       - "25000:25000"

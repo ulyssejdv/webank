@@ -4,7 +4,7 @@ echo $(TAG)
 
 docker push ulyssejdv/webank-front-android:${TAG}
 
-docker push ulyssejdv/webank-webapp:1.0:${TAG}
+docker push ulyssejdv/webank-webapp:${TAG}
 
 docker push ulyssejdv/data-access-service:${TAG}
 

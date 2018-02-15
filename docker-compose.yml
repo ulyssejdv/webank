@@ -8,10 +8,6 @@ services:
     build:
       context: ./data-access-service/docker/postgresql
     image: 'ulyssejdv/postgresql:${TAG}'
-    deploy:
-      replicas: 3
-      restart_policy:
-        condition: on-failure
     ports:
       - "25432:5432"
     volumes:
@@ -29,10 +25,6 @@ services:
       args:
         JAR_FILE: "target/data-access-service.jar"
     image: 'ulyssejdv/data-access-service:${TAG}'
-    deploy:
-      replicas: 3
-      restart_policy:
-        condition: on-failure
     ports:
       - "25000:25000"
     depends_on:
@@ -85,10 +77,6 @@ services:
       args:
         JAR_FILE: "target/webank-front-android.jar"
     image: 'ulyssejdv/webank-front-android:${TAG}'
-    deploy:
-      replicas: 3
-      restart_policy:
-        condition: on-failure
     ports:
       - "9090:9090"
     depends_on:
@@ -106,10 +94,6 @@ services:
       args:
         JAR_FILE: "target/webank-hdfs-service.jar"
     image: 'ulyssejdv/webank-hdfs-service:${TAG}'
-    deploy:
-      replicas: 3
-      restart_policy:
-        condition: on-failure
     ports:
       - "25100:25100"
     networks:
@@ -125,10 +109,6 @@ services:
       args:
         JAR_FILE: "target/webank-webapp.war"
     image: 'ulyssejdv/webank-webapp:${TAG}'
-    deploy:
-      replicas: 3
-      restart_policy:
-        condition: on-failure
     ports:
       - "8080:8080"
     depends_on:

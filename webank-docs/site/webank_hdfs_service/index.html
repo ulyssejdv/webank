@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Webank HDFS Service - Documentations Webank</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Webank HDFS Service";
+    var mkdocs_page_input_path = "webank_hdfs_service.md";
+    var mkdocs_page_url = "/webank_hdfs_service/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Documentations Webank</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Webank HDFS Service</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#webank-hdfs-service">Webank HDFS Service</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#api-endpoint">API Endpoint</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l2"><a href="#how-to-setup-the-webank-hdfs-cluster">How to setup the webank HDFS cluster</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#hosts">Hosts</a></li>
+        
+            <li><a class="toctree-l3" href="#install-ambari">Install Ambari</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../data_access_service/">Data Access Service</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Documentations Webank</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Webank HDFS Service</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="webank-hdfs-service">Webank HDFS Service</h1>
+<p><strong>Context Path</strong> : /webank-hdfs-service</p>
+<p><strong>Port</strong> : 25100</p>
+<h2 id="api-endpoint">API Endpoint</h2>
+<p><strong>[GET] /bank-statement/{fileName}</strong></p>
+<ul>
+<li>Content Type : application/pdf</li>
+<li>Responde Code : 200</li>
+</ul>
+<p>Erreurs :</p>
+<ul>
+<li>404 : No PDF can be returned</li>
+</ul>
+<h1 id="how-to-setup-the-webank-hdfs-cluster">How to setup the webank HDFS cluster</h1>
+<h2 id="hosts">Hosts</h2>
+<p>On each host, run the following commands :</p>
+<p><code>sudo apt-get update</code></p>
+<h3 id="configure-dns">Configure DNS</h3>
+<p>edit <code>/etc/hosts</code> on each host to know each other</p>
+<p>test pingin the hostname</p>
+<h3 id="install-java">Install JAVA</h3>
+<p><code>sudo apt-get install default-jdk</code></p>
+<p>make sur java is well installed</p>
+<p><code>java -version</code></p>
+<h3 id="install-hadoop">Install Hadoop</h3>
+<p>download the binary (2.8.2 in our case)</p>
+<p><code>wget http://apache.mindstudios.com/hadoop/common/hadoop-2.8.2/hadoop-2.8.2.tar.gz</code></p>
+<p><code>tar -xzvf hadoop-2.8.2.tar.gz</code></p>
+<p><code>sudo mv hadoop-2.8.2 /usr/local/hadoop</code></p>
+<p>change this line in : <code>/usr/local/hadoop/etc/hadoop/hadoop-env.sh</code></p>
+<p>with the following</p>
+<pre><code>#export JAVA_HOME=${JAVA_HOME}
+export JAVA_HOME=$(readlink -f /usr/bin/java | sed &quot;s:bin/java::&quot;)
+</code></pre>
+
+<p>make sure hadoop is well installed</p>
+<p><code>/usr/local/hadoop/bin/hadoop</code></p>
+<h2 id="install-ambari">Install Ambari</h2>
+<p>On the master host (ambari-server) :</p>
+<p><code>ssh-keygen</code></p>
+<p><code>ssh-keygen</code>
+copy the .ssh/id_rsa.pub on each slave</p>
+<p><code>scp .ssh/id_rsa.pub user@10.168.1.16:/home/user/.ssh/</code></p>
+<p><code>scp .ssh/id_rsa.pub user@10.168.1.17:/home/user/.ssh/</code></p>
+<p>Check ssh access work well</p>
+<p><code>ssh user@10.168.1.16</code>
+<code>ssh user@10.168.1.17</code></p>
+<p>install ambari server on the master</p>
+<p><code>wget -O /etc/apt/sources.list.d/ambari.list http://public-repo-1.hortonworks.com/ambari/ubuntu16/2.x/updates/2.6.0.0/ambari.list</code></p>
+<p><code>apt-key adv --recv-keys --keyserver keyserver.ubuntu.com B9733A7A07513CAD</code></p>
+<p><code>apt-get update</code></p>
+<p><code>apt-get install ambari-server</code></p>
+<p><code>ambari-server setup</code></p>
+<p>go to the Ambari admin web interface</p>
+<p>References :</p>
+<ul>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-install-hadoop-in-stand-alone-mode-on-ubuntu-16-04">https://www.digitalocean.com/community/tutorials/how-to-install-hadoop-in-stand-alone-mode-on-ubuntu-16-04</a></li>
+<li><a href="https://docs.hortonworks.com/HDPDocuments/Ambari-2.6.0.0/bk_ambari-installation/content/set_up_the_ambari_server.html">https://docs.hortonworks.com/HDPDocuments/Ambari-2.6.0.0/bk_ambari-installation/content/set_up_the_ambari_server.html</a></li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../data_access_service/" class="btn btn-neutral float-right" title="Data Access Service">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../data_access_service/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>

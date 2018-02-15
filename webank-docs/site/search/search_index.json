@@ -1,0 +1,109 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "Welcome to Webank Docs\n\n\nCommands\n\n\n\n\nmkdocs serve\n - Start the live-reloading docs server.\n\n\nmkdocs build\n - Build the documentation site.\n\n\nmkdocs help\n - Print this help message.\n\n\n\n\nDocker stack\n\n\nInit of data files\n\n\n\n\nStart the container whithout mount any volume\n\n\n\n\ndocker run webank/postgres\n\n\n\n\nCopy data files from the container to the host\n\n\n\n\ndocker cp \nID CONTAINER POSTGRES\n:/var/lib/postgresql/9.3/main /webank\n\n\nBefore running all services in docker you have to build it\n\n\nmvn clean install\n\n\nYou can user docker to run maven ;) :\n\n\ndocker run -it --rm --name my-maven-project -v \"$PWD\":/usr/src/mymaven -w /usr/src/mymaven maven:3.2-jdk-8 mvn clean install\n\n\nBuild all images\n\n\ndocker-compose build\n\n\nStart all services of the webank stack\n\n\nTake care ! You have to init swarn on the host\n\n\ndocker swarn init\n\n\nUp the stack\n\n\ndocker stack deploy -c docker-compose.yml webank-stack\n\n\nWait until all services are fully running and then can access them.\n\n\nStack manipulations\n\n\nShutdown all services of the webank stack\n\n\ndocker stack rm webank-stack\n\n\nConnexion to the dockerised database\n\n\npsql -h localhost -p 25432 -d webank -U docker --password\n\n\nMake a backup of the database (after exec, replace the id by the real container id)\n\n\ndocker exec d8dc5836d037 usr/lib/postgresql/9.3/bin/pg_dump webank \n backup.sql\n\n\nRe-import backup (or any sql file) into the docker postgres instance\n\n\npsql -h localhost -p 25432 -d webank -U docker --password \n backup.sql", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#welcome-to-webank-docs", 
+            "text": "", 
+            "title": "Welcome to Webank Docs"
+        }, 
+        {
+            "location": "/#commands", 
+            "text": "mkdocs serve  - Start the live-reloading docs server.  mkdocs build  - Build the documentation site.  mkdocs help  - Print this help message.", 
+            "title": "Commands"
+        }, 
+        {
+            "location": "/#docker-stack", 
+            "text": "", 
+            "title": "Docker stack"
+        }, 
+        {
+            "location": "/#init-of-data-files", 
+            "text": "Start the container whithout mount any volume   docker run webank/postgres   Copy data files from the container to the host   docker cp  ID CONTAINER POSTGRES :/var/lib/postgresql/9.3/main /webank", 
+            "title": "Init of data files"
+        }, 
+        {
+            "location": "/#before-running-all-services-in-docker-you-have-to-build-it", 
+            "text": "mvn clean install  You can user docker to run maven ;) :  docker run -it --rm --name my-maven-project -v \"$PWD\":/usr/src/mymaven -w /usr/src/mymaven maven:3.2-jdk-8 mvn clean install", 
+            "title": "Before running all services in docker you have to build it"
+        }, 
+        {
+            "location": "/#build-all-images", 
+            "text": "docker-compose build", 
+            "title": "Build all images"
+        }, 
+        {
+            "location": "/#start-all-services-of-the-webank-stack", 
+            "text": "Take care ! You have to init swarn on the host  docker swarn init  Up the stack  docker stack deploy -c docker-compose.yml webank-stack  Wait until all services are fully running and then can access them.", 
+            "title": "Start all services of the webank stack"
+        }, 
+        {
+            "location": "/#stack-manipulations", 
+            "text": "Shutdown all services of the webank stack  docker stack rm webank-stack  Connexion to the dockerised database  psql -h localhost -p 25432 -d webank -U docker --password  Make a backup of the database (after exec, replace the id by the real container id)  docker exec d8dc5836d037 usr/lib/postgresql/9.3/bin/pg_dump webank   backup.sql  Re-import backup (or any sql file) into the docker postgres instance  psql -h localhost -p 25432 -d webank -U docker --password   backup.sql", 
+            "title": "Stack manipulations"
+        }, 
+        {
+            "location": "/webank_hdfs_service/", 
+            "text": "Webank HDFS Service\n\n\nContext Path\n : /webank-hdfs-service\n\n\nPort\n : 25100\n\n\nAPI Endpoint\n\n\n[GET] /bank-statement/{fileName}\n\n\n\n\nContent Type : application/pdf\n\n\nResponde Code : 200\n\n\n\n\nErreurs :\n\n\n\n\n404 : No PDF can be returned\n\n\n\n\nHow to setup the webank HDFS cluster\n\n\nHosts\n\n\nOn each host, run the following commands :\n\n\nsudo apt-get update\n\n\nConfigure DNS\n\n\nedit \n/etc/hosts\n on each host to know each other\n\n\ntest pingin the hostname\n\n\nInstall JAVA\n\n\nsudo apt-get install default-jdk\n\n\nmake sur java is well installed\n\n\njava -version\n\n\nInstall Hadoop\n\n\ndownload the binary (2.8.2 in our case)\n\n\nwget http://apache.mindstudios.com/hadoop/common/hadoop-2.8.2/hadoop-2.8.2.tar.gz\n\n\ntar -xzvf hadoop-2.8.2.tar.gz\n\n\nsudo mv hadoop-2.8.2 /usr/local/hadoop\n\n\nchange this line in : \n/usr/local/hadoop/etc/hadoop/hadoop-env.sh\n\n\nwith the following\n\n\n#export JAVA_HOME=${JAVA_HOME}\nexport JAVA_HOME=$(readlink -f /usr/bin/java | sed \ns:bin/java::\n)\n\n\n\n\nmake sure hadoop is well installed\n\n\n/usr/local/hadoop/bin/hadoop\n\n\nInstall Ambari\n\n\nOn the master host (ambari-server) :\n\n\nssh-keygen\n\n\nssh-keygen\n\ncopy the .ssh/id_rsa.pub on each slave\n\n\nscp .ssh/id_rsa.pub user@10.168.1.16:/home/user/.ssh/\n\n\nscp .ssh/id_rsa.pub user@10.168.1.17:/home/user/.ssh/\n\n\nCheck ssh access work well\n\n\nssh user@10.168.1.16\n\n\nssh user@10.168.1.17\n\n\ninstall ambari server on the master\n\n\nwget -O /etc/apt/sources.list.d/ambari.list http://public-repo-1.hortonworks.com/ambari/ubuntu16/2.x/updates/2.6.0.0/ambari.list\n\n\napt-key adv --recv-keys --keyserver keyserver.ubuntu.com B9733A7A07513CAD\n\n\napt-get update\n\n\napt-get install ambari-server\n\n\nambari-server setup\n\n\ngo to the Ambari admin web interface\n\n\nReferences :\n\n\n\n\nhttps://www.digitalocean.com/community/tutorials/how-to-install-hadoop-in-stand-alone-mode-on-ubuntu-16-04\n\n\nhttps://docs.hortonworks.com/HDPDocuments/Ambari-2.6.0.0/bk_ambari-installation/content/set_up_the_ambari_server.html", 
+            "title": "Webank HDFS Service"
+        }, 
+        {
+            "location": "/webank_hdfs_service/#webank-hdfs-service", 
+            "text": "Context Path  : /webank-hdfs-service  Port  : 25100", 
+            "title": "Webank HDFS Service"
+        }, 
+        {
+            "location": "/webank_hdfs_service/#api-endpoint", 
+            "text": "[GET] /bank-statement/{fileName}   Content Type : application/pdf  Responde Code : 200   Erreurs :   404 : No PDF can be returned", 
+            "title": "API Endpoint"
+        }, 
+        {
+            "location": "/webank_hdfs_service/#how-to-setup-the-webank-hdfs-cluster", 
+            "text": "", 
+            "title": "How to setup the webank HDFS cluster"
+        }, 
+        {
+            "location": "/webank_hdfs_service/#hosts", 
+            "text": "On each host, run the following commands :  sudo apt-get update", 
+            "title": "Hosts"
+        }, 
+        {
+            "location": "/webank_hdfs_service/#configure-dns", 
+            "text": "edit  /etc/hosts  on each host to know each other  test pingin the hostname", 
+            "title": "Configure DNS"
+        }, 
+        {
+            "location": "/webank_hdfs_service/#install-java", 
+            "text": "sudo apt-get install default-jdk  make sur java is well installed  java -version", 
+            "title": "Install JAVA"
+        }, 
+        {
+            "location": "/webank_hdfs_service/#install-hadoop", 
+            "text": "download the binary (2.8.2 in our case)  wget http://apache.mindstudios.com/hadoop/common/hadoop-2.8.2/hadoop-2.8.2.tar.gz  tar -xzvf hadoop-2.8.2.tar.gz  sudo mv hadoop-2.8.2 /usr/local/hadoop  change this line in :  /usr/local/hadoop/etc/hadoop/hadoop-env.sh  with the following  #export JAVA_HOME=${JAVA_HOME}\nexport JAVA_HOME=$(readlink -f /usr/bin/java | sed  s:bin/java:: )  make sure hadoop is well installed  /usr/local/hadoop/bin/hadoop", 
+            "title": "Install Hadoop"
+        }, 
+        {
+            "location": "/webank_hdfs_service/#install-ambari", 
+            "text": "On the master host (ambari-server) :  ssh-keygen  ssh-keygen \ncopy the .ssh/id_rsa.pub on each slave  scp .ssh/id_rsa.pub user@10.168.1.16:/home/user/.ssh/  scp .ssh/id_rsa.pub user@10.168.1.17:/home/user/.ssh/  Check ssh access work well  ssh user@10.168.1.16  ssh user@10.168.1.17  install ambari server on the master  wget -O /etc/apt/sources.list.d/ambari.list http://public-repo-1.hortonworks.com/ambari/ubuntu16/2.x/updates/2.6.0.0/ambari.list  apt-key adv --recv-keys --keyserver keyserver.ubuntu.com B9733A7A07513CAD  apt-get update  apt-get install ambari-server  ambari-server setup  go to the Ambari admin web interface  References :   https://www.digitalocean.com/community/tutorials/how-to-install-hadoop-in-stand-alone-mode-on-ubuntu-16-04  https://docs.hortonworks.com/HDPDocuments/Ambari-2.6.0.0/bk_ambari-installation/content/set_up_the_ambari_server.html", 
+            "title": "Install Ambari"
+        }, 
+        {
+            "location": "/data_access_service/", 
+            "text": "Data Access Service\n\n\nContext Path\n : /data-access-service\n\n\nPort\n : 25000\n\n\nAPI Endpoint\n\n\n[GET] /bank-statement/{bankStatementId}\n\n\nGet one bank-statement metadata for the given id\n\n\n\n\nContent Type : application/json\n\n\nBody : BankStatementDto\n\n\n\n\n{\"id\":1,\"fileName\":\"bas_1.pdf\",\"createdAt\":1506604288454}\n\n\n\n\nResponde Code : 200\n\n\n\n\nErreurs :\n\n\n\n\n204 : No Content\n\n\n\n\n\n\n[GET] /bank-statement/customer/{customerId}\n\n\nGet all bank-statement metadata for the given customer\n\n\n\n\nContent Type : application/json\n\n\nBody :\n\n\n\n\n[\n    {\n        \nid\n: 1,\n        \nfileName\n: \nbas_1.pdf\n,\n        \ncreatedAt\n: 1506604288454\n    },\n    {\n        \nid\n: 4,\n        \nfileName\n: \nbas_4.pdf\n,\n        \ncreatedAt\n: 1509196288454\n    },\n    {\n        \nid\n: 7,\n        \nfileName\n: \nbas_7.pdf\n,\n        \ncreatedAt\n: 1511874688454\n    },\n    {\n        \nid\n: 10,\n        \nfileName\n: \nbas_10.pdf\n,\n        \ncreatedAt\n: 1514466688454\n    }\n]\n\n\n\n\n\n\nResponde Code : 200\n\n\n\n\nErreurs :\n\n\n\n\n204 : No Content", 
+            "title": "Data Access Service"
+        }, 
+        {
+            "location": "/data_access_service/#data-access-service", 
+            "text": "Context Path  : /data-access-service  Port  : 25000", 
+            "title": "Data Access Service"
+        }, 
+        {
+            "location": "/data_access_service/#api-endpoint", 
+            "text": "[GET] /bank-statement/{bankStatementId}  Get one bank-statement metadata for the given id   Content Type : application/json  Body : BankStatementDto   {\"id\":1,\"fileName\":\"bas_1.pdf\",\"createdAt\":1506604288454}   Responde Code : 200   Erreurs :   204 : No Content    [GET] /bank-statement/customer/{customerId}  Get all bank-statement metadata for the given customer   Content Type : application/json  Body :   [\n    {\n         id : 1,\n         fileName :  bas_1.pdf ,\n         createdAt : 1506604288454\n    },\n    {\n         id : 4,\n         fileName :  bas_4.pdf ,\n         createdAt : 1509196288454\n    },\n    {\n         id : 7,\n         fileName :  bas_7.pdf ,\n         createdAt : 1511874688454\n    },\n    {\n         id : 10,\n         fileName :  bas_10.pdf ,\n         createdAt : 1514466688454\n    }\n]   Responde Code : 200   Erreurs :   204 : No Content", 
+            "title": "API Endpoint"
+        }
+    ]
+}

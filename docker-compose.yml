@@ -12,10 +12,6 @@ services:
       replicas: 3
       restart_policy:
         condition: on-failure
-      resources:
-        limits:
-          cpus: "0.5"
-          memory: 500M
     ports:
       - "25432:5432"
     volumes:
@@ -37,10 +33,6 @@ services:
       replicas: 3
       restart_policy:
         condition: on-failure
-      resources:
-        limits:
-          cpus: "0.5"
-          memory: 500M
     ports:
       - "25000:25000"
     depends_on:
@@ -97,10 +89,6 @@ services:
       replicas: 3
       restart_policy:
         condition: on-failure
-      resources:
-        limits:
-          cpus: "0.5"
-          memory: 500M
     ports:
       - "9090:9090"
     depends_on:
@@ -122,10 +110,6 @@ services:
       replicas: 3
       restart_policy:
         condition: on-failure
-      resources:
-        limits:
-          cpus: "0.5"
-          memory: 500M
     ports:
       - "25100:25100"
     networks:
@@ -145,10 +129,6 @@ services:
       replicas: 3
       restart_policy:
         condition: on-failure
-      resources:
-        limits:
-          cpus: "0.5"
-          memory: 500M
     ports:
       - "8080:8080"
     depends_on:

@@ -75,6 +75,28 @@ public class PredictionSoldeService {
     }
 
     public List<HistoriqueSoldeDto> predictNextYear(Long idClient) throws IOException, InterruptedException {
+
+        File scriptFile = new File("script.R");
+
+        if(!scriptFile.exists()) {
+            PrintWriter scriptPw = new PrintWriter(scriptFile);
+
+            String script ="#!/usr/bin/env Rscript\n" +
+                    "args = commandArgs(trailingOnly=TRUE)\n" +
+                    "\n" +
+                    "data <- read.csv(file=args[1], header=TRUE, sep=\",\", encoding=\"UTF-8\")\n" +
+                    "datapred <- read.csv(file=args[2], header=TRUE, sep=\",\", encoding=\"UTF-8\")\n" +
+                    "library(methods)\n" +
+                    "library(Matrix)\n" +
+                    "library(lme4)\n" +
+                    "model2 <- lmer(data = data, SOLDE ~ MOIS + ENFANTS + ANNEE + (1| IDCLIENT))\n" +
+                    "datapred[,\"SOLDE\"] = predict(model2, newdata = datapred)\n" +
+                    "write.csv(datapred, file = args[2]);\n";
+
+            scriptPw.write(script);
+            scriptPw.close();
+        }
+
         UUID uuid = UUID.randomUUID();
 
         Pageable pageable = new PageRequest(0, 1);
@@ -162,9 +184,9 @@ public class PredictionSoldeService {
         pw.write(sb.toString());
         pw.close();
 
-        String fileLocationScript =  new ClassPathResource("script/script.R").getFile().getAbsolutePath();
+        //String fileLocationScript =  new ClassPathResource("script/script.R").getFile().getAbsolutePath();
 
-        String cmd = "Rscript --vanilla " + fileLocationScript + " " + testFile.getAbsolutePath() + " " + testpred.getAbsolutePath();
+        String cmd = "/usr/bin/Rscript --vanilla " + scriptFile.getAbsolutePath() + " " + testFile.getAbsolutePath() + " " + testpred.getAbsolutePath();
         Process child = Runtime.getRuntime().exec(cmd);
 
         int code = child.waitFor();

@@ -21,7 +21,7 @@ import java.util.List;
 @RequestMapping("/prediction")
 public class PredictionController {
 
-    private final String baseurl = "http://localhost:25000/data-access-service/prediction";
+    private final String baseurl = "http://data-access-service:25000/data-access-service/prediction";
 
     @RequestMapping(value="/{clientId}",method = {RequestMethod.GET})
     public ModelAndView getPrediction(@PathVariable Long clientId) {

@@ -1,0 +1,11 @@
+library(readr)
+data <- read_delim("~/Desktop/PDS/R1/ML_end/DonnéesTestAlgo.csv", 
+    ";", escape_double = FALSE, trim_ws = TRUE)
+View(data)
+model1=lm(data$SoldeCCP~ ., data)
+summary(model1)
+coef(model1)
+data_pred=read.csv(file='./DonnéesTestAlgo_pred.csv', header=TRUE, sep=';')
+pred<-predict(model1,data_pred)
+final_data<-cbind(data_pred,pred)
+bic=BIC(model1)

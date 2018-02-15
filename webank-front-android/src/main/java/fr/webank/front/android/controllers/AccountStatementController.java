@@ -1,44 +1,38 @@
 package fr.webank.front.android.controllers;
 
 import fr.webank.front.android.services.AccountStatementService;
+import fr.webank.front.android.services.RestManagement;
+import fr.webank.webankmodels.AccountDto;
+import fr.webank.webankmodels.BankStatementDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
 /**
- * Created by ulysse on 11/01/2018.
+ * Created by BoubacarNDIAYE on 04/12/2017.
  */
+@RestController
+@RequestMapping(path = "/statement")
 public class AccountStatementController {
 
-    @Autowired
-    private AccountStatementService pdfService;
+        @RequestMapping(path = "/getCustomerBankStatement/{id}", method = RequestMethod.GET)
+        public ResponseEntity<BankStatementDto[]> get(@PathVariable @Valid @Pattern(regexp = "[0-9]{1,}") long id) {
+            BankStatementDto[] BankStatementDto = AccountStatementService.getResponseStatement(
+                    "/", id);
+            return !(BankStatementDto == null) ?
+                    new ResponseEntity<>(BankStatementDto,HttpStatus.OK) :
+                    new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
 
-    //http://localhost:8001/mobile-front/releve/pdf/1
-    @GetMapping("releve/pdf/{basId}")
-    public ResponseEntity<byte[]> GetAccountStatementPDF(@PathVariable Long basId) {
 
-        byte[] contents = pdfService.getMyPDF(basId);
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.parseMediaType("application/pdf"));
-        ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(contents, headers, HttpStatus.OK);
-        return response;
     }
 
-    //route : http://localhost:8001/mobile-front/releve/infos/1
-    @GetMapping("releve/infos/{basId}")
-    public ResponseEntity<byte[]> GetAccountStatementJSON(@PathVariable Long basId) {
 
-        byte[] contents = pdfService.getMyJsonDocumnt(basId);
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.parseMediaType("application/JSON"));
-        ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(contents, headers, HttpStatus.OK);
-        return response;
-    }
 
-}
+

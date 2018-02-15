@@ -17,13 +17,13 @@ import javax.validation.constraints.Pattern;
  * Created by BoubacarNDIAYE on 04/12/2017.
  */
 @RestController
-@RequestMapping(path = "/statement")
+@RequestMapping(path = "/bank-statement/customer")
 public class AccountStatementController {
 
         @RequestMapping(path = "/getCustomerBankStatement/{id}", method = RequestMethod.GET)
         public ResponseEntity<BankStatementDto[]> get(@PathVariable @Valid @Pattern(regexp = "[0-9]{1,}") long id) {
             BankStatementDto[] BankStatementDto = AccountStatementService.getResponseStatement(
-                    "/", id);
+                    "", id);
             return !(BankStatementDto == null) ?
                     new ResponseEntity<>(BankStatementDto,HttpStatus.OK) :
                     new ResponseEntity<>(HttpStatus.NO_CONTENT);

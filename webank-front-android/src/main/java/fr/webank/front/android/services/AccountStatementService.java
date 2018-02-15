@@ -21,12 +21,12 @@ import java.util.Optional;
  */
 @Service
 public class AccountStatementService {
-    public static final String REST_SERVICE_URI = "http://data-access-service:25000/data-access-service/bank-statement/customer/";
+    public static final String REST_SERVICE_URI = "http://data-access-service:25000/data-access-service/bank-statement/customer";
 
     public static BankStatementDto[] getResponseStatement(String endPath,
                                                           long id) {
 
-        final String url = REST_SERVICE_URI + "/" + endPath + "/" + id;
+        final String url = REST_SERVICE_URI + "/" + id;
         RestTemplate restTemplate2 = new RestTemplate();
         BankStatementDto[] result = restTemplate2.getForObject(url, BankStatementDto[].class);
         return result;

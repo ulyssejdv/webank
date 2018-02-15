@@ -35,7 +35,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="font-size:22px;">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                    <a href="/webank/account/id/accueilClient" role="button" aria-haspopup="true" aria-expanded="false">Acceuil<span class="caret"></span></a>
+                    <a href="/webank/account/id/accueilClient" role="button" aria-haspopup="true" aria-expanded="false">Accueil<span class="caret"></span></a>
                 </li>
                 <li class="dropdown">
                     <a href="/webank/account/id/Notif#myModal" role="button" aria-haspopup="true" aria-expanded="false" type="submit" data-toggle="modal"> Mes notifications    ( ${fn:length(notification)} ) <span class="caret"></span></a>

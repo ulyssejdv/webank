@@ -43,7 +43,13 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bourse <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/webank/stockExchange/">CAC 40</a></li>
+                        <li><a href="/webank/stockExchange/">Portefeuille de titres</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Prédiction Solde Client <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/webank/prediction/">Clients de la banque</a></li>
                     </ul>
                 </li>
             </ul>

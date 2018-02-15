@@ -7,7 +7,7 @@ services:
   db:
     build:
       context: ./data-access-service/docker/postgresql
-    image: ulyssejdv/postgresql
+    image: 'ulyssejdv/postgresql:${TAG}'
     ports:
       - "25432:5432"
     volumes:
@@ -24,11 +24,46 @@ services:
       dockerfile: ./docker/data-access-service/Dockerfile
       args:
         JAR_FILE: "target/data-access-service.jar"
-    image: ulyssejdv/data-access-service
+    image: 'ulyssejdv/data-access-service:${TAG}'
     ports:
       - "25000:25000"
     depends_on:
       - db
+    networks:
+      - webnet
+
+  #---------------------------------------------------------------
+  # Service who communicate with the database second instance
+  #---------------------------------------------------------------
+  data-access-service-2:
+    build:
+      context: ./data-access-service
+      dockerfile: ./docker/data-access-service-2/Dockerfile
+      args:
+        JAR_FILE: "target/data-access-service.jar"
+    image: 'ulyssejdv/data-access-service-2:${TAG}'
+    ports:
+      - "25010:25010"
+    depends_on:
+      - db
+    networks:
+      - webnet
+
+  #---------------------------------------------------------------
+  # fail-over-soa
+  #---------------------------------------------------------------
+  fail-over-soa:
+    build:
+      context: ./fail-over-soa
+      dockerfile: ./docker/fail-over-soa/Dockerfile
+      args:
+        JAR_FILE: "target/fail-over-soa.jar"
+    image: 'ulyssejdv/fail-over-soa:${TAG}'
+    ports:
+      - "25030:25030"
+    depends_on:
+      - data-access-service
+      - data-access-service-2
     networks:
       - webnet
 
@@ -41,7 +76,7 @@ services:
       dockerfile: ./docker/Dockerfile
       args:
         JAR_FILE: "target/webank-front-android.jar"
-    image: ulyssejdv/webank-front-android
+    image: 'ulyssejdv/webank-front-android:${TAG}'
     ports:
       - "9090:9090"
     depends_on:
@@ -58,7 +93,7 @@ services:
       dockerfile: ./docker/Dockerfile
       args:
         JAR_FILE: "target/webank-hdfs-service.jar"
-    image: ulyssejdv/webank-hdfs-service
+    image: 'ulyssejdv/webank-hdfs-service:${TAG}'
     ports:
       - "25100:25100"
     networks:
@@ -73,11 +108,12 @@ services:
       dockerfile: ./docker/Dockerfile
       args:
         JAR_FILE: "target/webank-webapp.war"
-    image: ulyssejdv/webank-webapp
+    image: 'ulyssejdv/webank-webapp:${TAG}'
     ports:
       - "8080:8080"
     depends_on:
       - data-access-service
+      - fail-over-soa
     networks:
       - webnet
 

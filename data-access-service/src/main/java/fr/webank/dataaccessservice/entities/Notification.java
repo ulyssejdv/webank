@@ -16,16 +16,16 @@ public class Notification {
     @JoinColumn(name = "id_transaction")
     private Transaction transaction;
 
+    private Boolean read;
+
     public Notification() {
     }
 
-    public Notification(Long idNotification, Transaction transaction, boolean read) {
+    public Notification(Long idNotification, Transaction transaction, Boolean read) {
         this.idNotification = idNotification;
         this.transaction = transaction;
         this.read = read;
     }
-
-    private boolean read;
 
     public long getIdNotification() {
         return idNotification;
@@ -43,11 +43,11 @@ public class Notification {
         this.transaction = transaction;
     }
 
-    public boolean isRead() {
+    public Boolean isRead() {
         return read;
     }
 
-    public void setRead(boolean read) {
+    public void setRead(Boolean read) {
         this.read = read;
     }
 }

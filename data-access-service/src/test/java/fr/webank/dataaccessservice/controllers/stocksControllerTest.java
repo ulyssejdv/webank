@@ -3,6 +3,7 @@ package fr.webank.dataaccessservice.controllers;
 import fr.webank.dataaccessservice.controllers.StockController;
 import fr.webank.dataaccessservice.services.StockPriceGeneratorService;
 import fr.webank.dataaccessservice.services.StockService;
+import fr.webank.dataaccessservice.services.stockprice.StockPriceService;
 import fr.webank.webankmodels.StockDto;
 import fr.webank.webankmodels.StockPriceDto;
 import org.junit.Assert;
@@ -30,8 +31,7 @@ public class stocksControllerTest {
     private StockService stockServiceMock;
 
     @Mock
-    private StockPriceGeneratorService stockPriceGeneratorServiceMock;
-
+    private StockPriceService stockPriceService;
     @InjectMocks
     private StockController StockControllerInjectMock;
 
@@ -72,7 +72,7 @@ public class stocksControllerTest {
                 .thenReturn(pageStocks);
 
 
-        ResponseEntity<List> response = StockControllerInjectMock.getAllStocks(0, 10);
+        ResponseEntity<List> response = StockControllerInjectMock.getAllStocks( "",0, 10);
 
         List<StockDto> body = (List<StockDto>)response.getBody();
 
@@ -89,7 +89,7 @@ public class stocksControllerTest {
     @Test
     public void shouldReturnStockPrice() {
 
-        when(stockPriceGeneratorServiceMock.GenerateStock(anyString()))
+        when(stockPriceService.getStockPrice(anyString()))
                 .thenReturn(stockPrice);
 
         ResponseEntity<StockPriceDto> response = StockControllerInjectMock.getStockPrice(anyString());
@@ -110,7 +110,7 @@ public class stocksControllerTest {
 
     @Test
     public void shouldReturnStockPriceNotFound() {
-        when(stockPriceGeneratorServiceMock.GenerateStock(anyString()))
+        when(stockPriceService.getStockPrice(anyString()))
                 .thenReturn(null);
 
         ResponseEntity<StockPriceDto> response = StockControllerInjectMock.getStockPrice(anyString());

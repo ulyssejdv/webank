@@ -1,0 +1,17 @@
+version: "3"
+services:
+  web:
+      image: webank/fail-over-soa
+      build:
+        context: docker/fail-over-soa
+        args:
+          JAR_FILE: "fail-over-soa.jar"
+      ports:
+        - "25030:25030"
+      depends_on:
+        - db
+      networks:
+        - webnet
+networks:
+  webnet:
+

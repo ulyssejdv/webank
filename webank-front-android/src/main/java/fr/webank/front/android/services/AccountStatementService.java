@@ -1,67 +1,37 @@
 package fr.webank.front.android.services;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import fr.webank.webankmodels.BankStatementDto;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 import webank.http.hdfs.WebHdfsServiceBuilder;
 
 import java.io.IOException;
+import java.util.Optional;
 
 /**
- * Created by boubacar on 30/11/2017.
+ * Created by boubacarNDIAYE on 30/11/2017.
  */
-@Log
 @Service
 public class AccountStatementService {
+    public static final String REST_SERVICE_URI = "http://data-access-service:25000/data-access-service/bank-statement/customer/";
 
-    private String url;
-    private String port;
-    private String path;
-    private String service;
+    public static BankStatementDto[] getResponseStatement(String endPath,
+                                                          long id) {
 
-    @Autowired
-    public AccountStatementService(@Value("${baacst.service.url}") String url, @Value("${baacst.service.port}") String port, @Value("${baacst.service.path}") String path, @Value("${baacst.service.service}") String service) {
-        this.port = port;
-        this.url = url;
-        this.path = path;
-        this.service = service;
-    }
-
-    //http://10.168.1.4:25100/baacst-service/pdf/1/customer/1
-    public byte[] getMyPDF(Long customerId) {
-        byte[] pdf = null;
-        StringBuilder fullUrl = new StringBuilder();
-        fullUrl.append(this.url).append(":").append(port).append(this.service);
-        fullUrl.append(this.path).append("/" + customerId).append("/customer/").append(customerId);
-        log.info(fullUrl.toString());
-        // todo : get info from webank-hdfs-service
-        /*
-        try {
-            pdf = WebHdfsServiceBuilder.run(fullUrl.toString());
-        } catch (IOException e) {
-            log.info(e.getMessage());
-        }
-        log.info(pdf.toString());*/
-        return pdf;
-    }
-
-    public byte[] getMyJsonDocumnt(Long customerId) {
-        byte[] pdf = null;
-        StringBuilder fullUrl = new StringBuilder();
-        fullUrl.append(this.url).append(":").append(port).append(this.service).
-                append("/").append(customerId);
-        log.info(fullUrl.toString());
-
-        // todo : get info from data-access-service
-        /*try {
-            pdf = WebHdfsServiceBuilder.run(fullUrl.toString());
-        } catch (IOException e) {
-            log.info(e.getMessage());
-        }
-        log.info(pdf.toString());*/
-        return pdf;
+        final String url = REST_SERVICE_URI + "/" + endPath + "/" + id;
+        RestTemplate restTemplate2 = new RestTemplate();
+        BankStatementDto[] result = restTemplate2.getForObject(url, BankStatementDto[].class);
+        return result;
     }
 
 
 }
+

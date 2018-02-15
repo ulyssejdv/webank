@@ -17,20 +17,46 @@ import javax.validation.constraints.Pattern;
  * Created by BoubacarNDIAYE on 04/12/2017.
  */
 @RestController
-@RequestMapping(path = "/statement")
+@RequestMapping(path = "/bank-statement/customer")
 public class AccountStatementController {
 
-        @RequestMapping(path = "/getCustomerBankStatement/{id}", method = RequestMethod.GET)
-        public ResponseEntity<BankStatementDto[]> get(@PathVariable @Valid @Pattern(regexp = "[0-9]{1,}") long id) {
-            BankStatementDto[] BankStatementDto = AccountStatementService.getResponseStatement(
-                    "/", id);
-            return !(BankStatementDto == null) ?
-                    new ResponseEntity<>(BankStatementDto,HttpStatus.OK) :
-                    new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    @RequestMapping(path = "/getCustomerBankStatement/{id}", method = RequestMethod.GET)
+    public ResponseEntity<BankStatementDto[]> get(@PathVariable @Valid @Pattern(regexp = "[0-9]{1,}") long id) {
+        BankStatementDto[] BankStatementDto = AccountStatementService.getResponseStatement(
+                "", id);
+        return !(BankStatementDto == null) ?
+                new ResponseEntity<>(BankStatementDto, HttpStatus.OK) :
+                new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    //
+
+
+    @RequestMapping(path = "/getCustomerBankStatementPDF/{filename}", method = RequestMethod.GET)
+    public ResponseEntity<?> get(@PathVariable String filename) throws  Exception{
+        HttpHeaders headers = new HttpHeaders();
+
+        byte[] contents = null;
+
+        try {
+            contents =  AccountStatementService.getResponseStatementpdf(filename);
+        } catch (Exception e) {
+            headers.setContentType(MediaType.parseMediaType("application/json"));
+            return new ResponseEntity<>(e.getMessage(), headers, HttpStatus.NOT_FOUND);
         }
 
+        if (contents == null) {
+            return new ResponseEntity<>("No PDF can be returned", HttpStatus.NOT_FOUND);
+        }
+
+        headers.setContentType(MediaType.parseMediaType("application/pdf"));
+        headers.setContentDispositionFormData(filename, filename);
+        headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+
+        return new ResponseEntity<>(contents, headers, HttpStatus.OK);
 
     }
+}
 
 
 

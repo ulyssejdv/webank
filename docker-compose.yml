@@ -152,6 +152,27 @@ services:
         constraints: [node.role == manager]
     networks:
       - webnet
+
+  #---------------------------------------------------------------
+  # Web docs
+  #---------------------------------------------------------------
+  webank-docs:
+    build:
+      context: ./webank-docs
+      dockerfile: Dockerfile
+    image: 'ulyssejdv/webank-docs:${TAG}'
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "28000:80"
+    depends_on:
+      - data-access-service
+      - fail-over-soa
+    networks:
+      - webnet
+
 networks:
   webnet:
 

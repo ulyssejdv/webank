@@ -1,0 +1,6 @@
+site_name: Documentations Webank
+theme: readthedocs
+pages:
+    - "Home": index.md
+    - "Webank HDFS Service": webank_hdfs_service.md
+    - "Data Access Service": data_access_service.md
